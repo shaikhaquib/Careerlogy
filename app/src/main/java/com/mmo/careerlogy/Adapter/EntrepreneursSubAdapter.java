@@ -1,43 +1,37 @@
 package com.mmo.careerlogy.Adapter;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mmo.careerlogy.Acivity.EntrepreneurSubCategory;
 import com.mmo.careerlogy.Acivity.StudentSubCategory;
 import com.mmo.careerlogy.R;
 
-public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHolder> {
-
-    int img [] = {R.drawable.ic_presentation , R.drawable.ic_homework , R.drawable.ic_time , R.drawable.ic_test , R.drawable.ic_analysis , R.drawable.ic_test_a , R.drawable.ic_family};
-    String name [] = {"Learning in Class Room","Homework" ,"Exam Date Announcement" , "Day of Exam" , "Reporting Exam to Parent" ,"Day of Result" , "P.T.A Meeting"};
-
+public class EntrepreneursSubAdapter extends RecyclerView.Adapter<EntrepreneursSubAdapter.ViewHolder> {
     Activity activity;
-    public StudentAdapter(FragmentActivity activity) {
-        this.activity = activity;
+
+    String name [] = {"Learning in Class Room","Homework" ,"Exam Date Announcement" , "Day of Exam" , "Reporting Exam to Parent" ,"Day of Result" , "P.T.A Meeting"};
+    public EntrepreneursSubAdapter(EntrepreneurSubCategory entrepreneursSubAdapter) {
+        this.activity = entrepreneursSubAdapter;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(activity).inflate(R.layout.rv_item,parent,false));
+        return new ViewHolder(LayoutInflater.from(activity).inflate(R.layout.itemlayout_subcate,parent,false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         ViewHolder viewHolder = (ViewHolder)holder;
         viewHolder.text.setText(name[position]);
-        viewHolder.icon.setImageResource(img[position]);
-
+        viewHolder.icon.setText(String.valueOf(position+1));
     }
 
     @Override
@@ -45,10 +39,9 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
         return name.length;
     }
 
-
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView text;
-        ImageView icon;
+        TextView icon;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -61,7 +54,6 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
 
         @Override
         public void onClick(View view) {
-            activity.startActivity(new Intent(activity, StudentSubCategory.class));
         }
     }
 

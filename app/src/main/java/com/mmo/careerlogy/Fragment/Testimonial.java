@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.mmo.careerlogy.Extra.UpdateTitle;
 import com.mmo.careerlogy.R;
-import com.mmo.careerlogy.SearchCity;
+import com.mmo.careerlogy.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,7 +19,7 @@ import com.mmo.careerlogy.SearchCity;
 public class Testimonial extends Fragment {
 
 
-    SearchCity activity;
+    MainActivity activity;
     UpdateTitle updateTitle;
 
     public Testimonial() {
@@ -31,7 +31,7 @@ public class Testimonial extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        activity= (SearchCity) getActivity();
+        activity= (MainActivity) getActivity();
         updateTitle = activity.updateTitle;
         updateTitle.updateData("Testimonial Video");
         return inflater.inflate(R.layout.fragment_testimonial, container, false);

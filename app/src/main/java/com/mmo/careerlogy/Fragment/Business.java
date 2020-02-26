@@ -14,11 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mmo.careerlogy.Adapter.EntrepreneursAdapter;
-import com.mmo.careerlogy.Adapter.StudentAdapter;
 import com.mmo.careerlogy.Extra.MyItemDecoration;
 import com.mmo.careerlogy.Extra.UpdateTitle;
 import com.mmo.careerlogy.R;
-import com.mmo.careerlogy.SearchCity;
+import com.mmo.careerlogy.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,7 +26,7 @@ public class Business extends Fragment {
 
 
 
-    SearchCity activity;
+    MainActivity activity;
     UpdateTitle updateTitle;
 
     private RecyclerView rvEntrepreneursCategory;
@@ -43,7 +42,7 @@ public class Business extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        activity= (SearchCity) getActivity();
+        activity= (MainActivity) getActivity();
         updateTitle = activity.updateTitle;
         updateTitle.updateData("Entrepreneurs");
 

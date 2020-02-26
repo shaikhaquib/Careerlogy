@@ -17,7 +17,7 @@ import com.mmo.careerlogy.Adapter.StudentAdapter;
 import com.mmo.careerlogy.Extra.MyItemDecoration;
 import com.mmo.careerlogy.Extra.UpdateTitle;
 import com.mmo.careerlogy.R;
-import com.mmo.careerlogy.SearchCity;
+import com.mmo.careerlogy.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,7 +25,7 @@ import com.mmo.careerlogy.SearchCity;
 public class Student extends Fragment {
 
 
-    private SearchCity activity;
+    private MainActivity activity;
     private UpdateTitle updateTitle;
     private RecyclerView rvStudentCategory;
     RecyclerView.Adapter studentAdapter;
@@ -39,7 +39,7 @@ public class Student extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        activity= (SearchCity) getActivity();
+        activity= (MainActivity) getActivity();
         updateTitle = activity.updateTitle;
         updateTitle.updateData("Student");
         return inflater.inflate(R.layout.fragment_student, container, false);

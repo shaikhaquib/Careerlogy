@@ -1,7 +1,6 @@
 package com.mmo.careerlogy.Fragment;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.mmo.careerlogy.Extra.UpdateTitle;
 import com.mmo.careerlogy.R;
-import com.mmo.careerlogy.SearchCity;
+import com.mmo.careerlogy.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,7 +19,7 @@ import com.mmo.careerlogy.SearchCity;
 public class Article extends Fragment {
 
 
-    SearchCity activity;
+    MainActivity activity;
     UpdateTitle updateTitle;
 
     public Article() {
@@ -32,7 +31,7 @@ public class Article extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        activity= (SearchCity) getActivity();
+        activity= (MainActivity) getActivity();
         updateTitle = activity.updateTitle;
         updateTitle.updateData("Article");
         return inflater.inflate(R.layout.fragment_article, container, false);

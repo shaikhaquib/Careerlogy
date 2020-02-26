@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.mmo.careerlogy.Extra.UpdateTitle;
 import com.mmo.careerlogy.R;
-import com.mmo.careerlogy.SearchCity;
+import com.mmo.careerlogy.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,7 +19,7 @@ import com.mmo.careerlogy.SearchCity;
 public class Graph extends Fragment {
 
 
-    SearchCity activity;
+    MainActivity activity;
     UpdateTitle updateTitle;
     public Graph() {
         // Required empty public constructor
@@ -30,7 +30,7 @@ public class Graph extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        activity= (SearchCity) getActivity();
+        activity= (MainActivity) getActivity();
         updateTitle = activity.updateTitle;
         updateTitle.updateData("Graph");
         return inflater.inflate(R.layout.fragment_graph, container, false);

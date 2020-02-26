@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.signIN).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),SearchCity.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
 

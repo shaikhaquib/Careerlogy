@@ -9,11 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Registration"
-            android:theme="@style/AppNoActionBar"/>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SearchCity"
-            android:theme="@style/AppNoActionBar"/>
+        <activity android:name=".Acivity.EntrepreneurSubCategory"></activity>
+        <activity
+            android:name=".Acivity.StudentSubCategory"
+            android:theme="@style/AppNoActionBar" />
+        <activity
+            android:name=".Registration"
+            android:theme="@style/AppNoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppNoActionBar" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppNoActionBar">
@@ -23,7 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

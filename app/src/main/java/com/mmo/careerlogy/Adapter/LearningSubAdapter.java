@@ -9,35 +9,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mmo.careerlogy.Acivity.StudentSubCategory;
 import com.mmo.careerlogy.R;
 
-public class EntrepreneursAdapter extends RecyclerView.Adapter<EntrepreneursAdapter.ViewHolder> {
-
-    int img [] = {R.drawable.ic_employee , R.drawable.ic_human_resources, R.drawable.ic_hotel };
-    String name [] = {"Individual","Organisation" ,"Industry" };
-
+public class LearningSubAdapter extends RecyclerView.Adapter<LearningSubAdapter.ViewHolder> {
     Activity activity;
-    public EntrepreneursAdapter(FragmentActivity activity) {
-        this.activity = activity;
+
+    String name [] = {"Learning in Class Room","Homework" ,"Exam Date Announcement" , "Day of Exam" , "Reporting Exam to Parent" ,"Day of Result" , "P.T.A Meeting"};
+    public LearningSubAdapter(StudentSubCategory studentSubCategory) {
+        this.activity = studentSubCategory;
     }
 
     @NonNull
     @Override
-    public EntrepreneursAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(activity).inflate(R.layout.rv_item,parent,false));
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ViewHolder(LayoutInflater.from(activity).inflate(R.layout.itemlayout_subcate,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull EntrepreneursAdapter.ViewHolder holder, int position) {
-
-        EntrepreneursAdapter.ViewHolder viewHolder = (EntrepreneursAdapter.ViewHolder)holder;
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        ViewHolder viewHolder = (ViewHolder)holder;
         viewHolder.text.setText(name[position]);
-        viewHolder.icon.setImageResource(img[position]);
-
+        viewHolder.icon.setText(String.valueOf(position+1));
     }
 
     @Override
@@ -45,10 +40,9 @@ public class EntrepreneursAdapter extends RecyclerView.Adapter<EntrepreneursAdap
         return name.length;
     }
 
-
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView text;
-        ImageView icon;
+        TextView icon;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -61,7 +55,6 @@ public class EntrepreneursAdapter extends RecyclerView.Adapter<EntrepreneursAdap
 
         @Override
         public void onClick(View view) {
-            activity.startActivity(new Intent(activity, StudentSubCategory.class));
         }
     }
 
