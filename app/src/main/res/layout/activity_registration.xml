@@ -17,326 +17,346 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CAREERLOGY"
-            android:textSize="26dp"
             android:textColor="@android:color/white"
-            android:textStyle="bold"/>
+            android:textSize="26dp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Through The Lense Of Neuroscience"
             android:textColor="@android:color/white"
-            android:textSize="10sp"/>
+            android:textSize="10sp" />
 
-    <LinearLayout
-        android:layout_width="330dp"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:orientation="vertical"
-        android:padding="@dimen/spacing_large"
-        android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="330dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_large">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="First Name"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="12dp"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@android:color/white" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLength="50"
-            android:padding="8dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/cornerborder"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@android:color/white"
-            android:theme="@style/EditText.Green" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last Name"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="12dp"
-            android:layout_marginTop="16dp"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@android:color/white" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLength="50"
-            android:padding="8dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/cornerborder"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@android:color/white"
-            android:theme="@style/EditText.Green" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gender"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="12dp"
-            android:layout_marginTop="16dp"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@android:color/white" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/material_text_button"
-            style="@style/Widget.MaterialComponents.Button.Icon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Choose"
-            app:strokeColor="@android:color/white"
-            app:strokeWidth="2dp"
-            android:background="@android:color/transparent"
-            android:textColor="@android:color/white"
-            app:iconGravity="end"
-            app:icon="@android:drawable/arrow_down_float"/>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Age"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="12dp"
-            android:layout_marginTop="16dp"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@android:color/white" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/dropDownAge"
-            style="@style/Widget.MaterialComponents.Button.Icon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Choose"
-            app:strokeColor="@android:color/white"
-            app:strokeWidth="2dp"
-            android:background="@android:color/transparent"
-            android:textColor="@android:color/white"
-            app:iconGravity="end"
-            app:icon="@android:drawable/arrow_down_float"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email Address"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="12dp"
-            android:layout_marginTop="16dp"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@android:color/white" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLength="50"
-            android:padding="8dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/cornerborder"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@android:color/white"
-            android:theme="@style/EditText.Green" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mobile No"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="12dp"
-            android:layout_marginTop="16dp"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@android:color/white" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLength="50"
-            android:padding="8dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/cornerborder"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@android:color/white"
-            android:theme="@style/EditText.Green" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="State"
-            android:textAlignment="center"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@android:color/white"
-            android:textSize="12dp"
-            android:textStyle="bold" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/dropDownState"
-            style="@style/Widget.MaterialComponents.Button.Icon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Choose"
-            app:strokeColor="@android:color/white"
-            app:strokeWidth="2dp"
-            android:background="@android:color/transparent"
-            android:textColor="@android:color/white"
-            app:iconGravity="end"
-            app:icon="@android:drawable/arrow_down_float"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="City"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="12dp"
-            android:layout_marginTop="16dp"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@android:color/white" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/dropDownCity"
-            style="@style/Widget.MaterialComponents.Button.Icon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Choose"
-            app:strokeColor="@android:color/white"
-            app:strokeWidth="2dp"
-            android:background="@android:color/transparent"
-            android:textColor="@android:color/white"
-            app:iconGravity="end"
-            app:icon="@android:drawable/arrow_down_float"/>
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <RadioButton
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:text="First Name"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@android:color/white"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/cornerborder"
+                android:inputType="text"
+                android:maxLength="50"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:theme="@style/EditText.Green" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Last Name"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@android:color/white"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Lname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/cornerborder"
+                android:inputType="text"
+                android:maxLength="50"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:theme="@style/EditText.Green" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Gender"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@android:color/white"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dropdGender"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="Choose"
+                android:textColor="@android:color/white"
+                app:icon="@android:drawable/arrow_down_float"
+                app:iconGravity="end"
+                app:strokeColor="@android:color/white"
+                app:strokeWidth="2dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Date Of Birth"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@android:color/white"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dropDownAge"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="Choose"
+                android:textColor="@android:color/white"
+                app:icon="@android:drawable/arrow_down_float"
+                app:iconGravity="end"
+                app:strokeColor="@android:color/white"
+                app:strokeWidth="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Email Address"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@android:color/white"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/cornerborder"
+                android:inputType="text"
+                android:maxLength="50"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:theme="@style/EditText.Green" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Mobile No"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@android:color/white"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/cornerborder"
+                android:inputType="number"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:theme="@style/EditText.Green" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="State"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@android:color/white"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dropDownState"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="Choose"
+                android:textColor="@android:color/white"
+                app:icon="@android:drawable/arrow_down_float"
+                app:iconGravity="end"
+                app:strokeColor="@android:color/white"
+                app:strokeWidth="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="City"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@android:color/white"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dropDownCity"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="Choose"
+                android:textColor="@android:color/white"
+                app:icon="@android:drawable/arrow_down_float"
+                app:iconGravity="end"
+                app:strokeColor="@android:color/white"
+                app:strokeWidth="2dp" />
+
+            <RadioGroup
+                android:id="@+id/rgUserType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbStudent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@android:color/holo_green_light"
+                    android:checked="true"
+                    android:text="Student"
+                    android:textColor="@android:color/white" />
+
+                <RadioButton
+                    android:id="@+id/rbEnterpreneur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@android:color/holo_green_light"
+                    android:text="Enterpreneur"
+                    android:textColor="@android:color/white" />
+
+
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/txtUserType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="Student"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                 android:textColor="@android:color/white"
-                android:buttonTint="@android:color/holo_green_light"/>
-            <RadioButton
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dropdownSlection"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="Choose"
+                android:textColor="@android:color/white"
+                app:icon="@android:drawable/arrow_down_float"
+                app:iconGravity="end"
+                app:strokeColor="@android:color/white"
+                app:strokeWidth="2dp" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Enterpreneur"
+                android:layout_marginTop="16dp"
+                android:text="Password"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                 android:textColor="@android:color/white"
-                android:buttonTint="@android:color/holo_green_light"/>
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/cornerborder"
+                android:inputType="text"
+                android:maxLength="50"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:theme="@style/EditText.Green" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Confirm Password"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@android:color/white"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Cpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/cornerborder"
+                android:inputType="text"
+                android:maxLength="50"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:theme="@style/EditText.Green" />
 
 
-        </RadioGroup>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/Signup"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@android:color/white"
+                android:text="Register"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                app:cornerRadius="16dp"
+                app:rippleColor="@color/colorPrimary" />
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Student"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="12dp"
-            android:layout_marginTop="16dp"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@android:color/white" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/dropdownSlection"
-            style="@style/Widget.MaterialComponents.Button.Icon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Choose"
-            app:strokeColor="@android:color/white"
-            app:strokeWidth="2dp"
-            android:background="@android:color/transparent"
-            android:textColor="@android:color/white"
-            app:iconGravity="end"
-            app:icon="@android:drawable/arrow_down_float"/>
-<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Password"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="12dp"
-            android:layout_marginTop="16dp"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@android:color/white" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLength="50"
-            android:padding="8dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/cornerborder"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@android:color/white"
-            android:theme="@style/EditText.Green" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Confirm Password"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="12dp"
-            android:layout_marginTop="16dp"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@android:color/white" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLength="50"
-            android:padding="8dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/cornerborder"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@android:color/white"
-            android:theme="@style/EditText.Green" />
-
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:text="Register"
-            android:backgroundTint="@android:color/white"
-            android:layout_marginTop="10dp"
-            android:textAllCaps="false"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            app:cornerRadius="16dp"
-            app:rippleColor="@color/colorPrimary"/>
-
+        </LinearLayout>
 
     </LinearLayout>
-
-    </LinearLayout>
-
 
 
 </ScrollView>

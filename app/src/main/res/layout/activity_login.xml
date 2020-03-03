@@ -21,7 +21,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_app_icon" />
+            android:src="@drawable/ic_careerlogy_logo_icon" />
 
         <View
             android:layout_width="0dp"
@@ -55,12 +55,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="USERNAME"
+            android:text="Email or Mobile"
             android:textAlignment="center"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
             android:textColor="@color/blue_grey_200" />
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="-4dp"
@@ -85,6 +86,7 @@
             android:textColor="@color/blue_grey_200" />
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="-4dp"

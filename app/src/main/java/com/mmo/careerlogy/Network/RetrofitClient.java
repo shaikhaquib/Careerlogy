@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    public static final String BASE_URL = "https://www.careerlogy.com/Careerlogy/index.php/API/";
+    public static final String BASE_URL = "https://www.careerlogy.com/Careerlogy/API/";
     private static RetrofitClient mInstance;
     private Retrofit retrofit;
 
