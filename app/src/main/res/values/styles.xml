@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
@@ -20,5 +20,11 @@
         <item name="colorControlActivated">@color/blue_500</item>
         <item name="colorControlHighlight">@color/blue_500</item>
         <item name="colorControlNormal">@color/blue_400</item>
+    </style>
+    <style name="toolbartext" parent="@style/Base.TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily" tools:ignore="NewApi">@font/roboto_bold</item>
     </style>
 </resources>

@@ -11,7 +11,7 @@ public class MyItemDecoration extends RecyclerView.ItemDecoration {
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         // only for the last one
         if (parent.getChildAdapterPosition(view) == parent.getAdapter().getItemCount() - 1) {
-            outRect.bottom = 80;
+            outRect.bottom = 150;
         }
     }
 }

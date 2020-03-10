@@ -44,7 +44,8 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                 android:textColor="@android:color/white"
                 android:textSize="12dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:gravity="center_horizontal" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/fname"
@@ -70,7 +71,8 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                 android:textColor="@android:color/white"
                 android:textSize="12dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:gravity="center_horizontal" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/Lname"
@@ -95,7 +97,8 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                 android:textColor="@android:color/white"
                 android:textSize="12dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:gravity="center_horizontal" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/dropdGender"
@@ -274,7 +277,8 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                 android:textColor="@android:color/white"
                 android:textSize="12dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:gravity="center_horizontal" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/dropdownSlection"
@@ -298,7 +302,8 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                 android:textColor="@android:color/white"
                 android:textSize="12dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:gravity="center_horizontal" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
@@ -306,7 +311,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:background="@drawable/cornerborder"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:maxLength="50"
                 android:maxLines="1"
                 android:padding="8dp"
@@ -323,7 +328,8 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                 android:textColor="@android:color/white"
                 android:textSize="12dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:gravity="center_horizontal" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/Cpassword"
@@ -331,7 +337,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:background="@drawable/cornerborder"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:maxLength="50"
                 android:maxLines="1"
                 android:padding="8dp"

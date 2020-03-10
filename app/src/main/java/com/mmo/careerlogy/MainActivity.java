@@ -3,6 +3,7 @@ package com.mmo.careerlogy;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,11 +18,18 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.mmo.careerlogy.Adapter.ViewPagerAdapter;
 import com.mmo.careerlogy.Extra.Constants;
 import com.mmo.careerlogy.Extra.SessionManager;
 import com.mmo.careerlogy.Extra.UpdateTitle;
+import com.mmo.careerlogy.Fragment.Article;
+import com.mmo.careerlogy.Fragment.Business;
+import com.mmo.careerlogy.Fragment.Graph;
+import com.mmo.careerlogy.Fragment.Student;
+import com.mmo.careerlogy.Fragment.Testimonial;
 import com.mmo.careerlogy.Models.UserinfoItem;
 import com.mmo.careerlogy.Network.UserDatabase;
 
@@ -29,12 +37,13 @@ import static com.mmo.careerlogy.LoginActivity.USER;
 
 public class MainActivity extends AppCompatActivity {
 
-    NavController navController;
     BottomNavigationView bottomNav;
+    ViewPager viewPager;
     public UpdateTitle updateTitle;
     TextView title;
     UserDatabase userDatabase;
     UserinfoItem userinfoItem = new UserinfoItem();
+    MenuItem prevMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
         userDatabase = Room.databaseBuilder(getApplicationContext(),UserDatabase.class, Constants.DATABASE_NAME).build();
 
         //Getting the Navigation Controller
-        navController = Navigation.findNavController(this, R.id.fragment);
+       // navController = Navigation.findNavController(this, R.id.fragment);
         bottomNav = findViewById(R.id.navigation);
+        viewPager = findViewById(R.id.viewpager);
         title = findViewById(R.id.title);
-        //Setting the navigation controller to Bottom Nav
-        NavigationUI.setupWithNavController(bottomNav, navController);
+        viewPager.setOffscreenPageLimit(5);
 
         updateTitle = new UpdateTitle() {
             @Override
@@ -56,8 +65,79 @@ public class MainActivity extends AppCompatActivity {
                 title.setText(Data);
             }
         };
-        Toast.makeText(this, USER.getUMName(), Toast.LENGTH_SHORT).show();
+        //Setting the navigation controller to Bottom Nav
+        bottomNav.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.studentFragment:
+                                viewPager.setCurrentItem(0);
+                                break;
+                            case R.id.entrepreneurFragment:
+                                viewPager.setCurrentItem(1);
+                                break;
+                            case R.id.graphFragment:
+                                viewPager.setCurrentItem(2);
+                                break;
+                            case R.id.articleFragment:
+                                viewPager.setCurrentItem(3);
+                                break;
+                            case R.id.videoFragment:
+                                viewPager.setCurrentItem(4);
+                                break;
+                        }
+                        return false;
+                    }
+                });
 
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (prevMenuItem != null) {
+                    prevMenuItem.setChecked(false);
+                }
+                else
+                {
+                    bottomNav.getMenu().getItem(0).setChecked(false);
+                }
+                Log.d("page", "onPageSelected: "+position);
+                bottomNav.getMenu().getItem(position).setChecked(true);
+                prevMenuItem = bottomNav.getMenu().getItem(position);
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        setupViewPager(viewPager);
+
+    }
+
+    private void setupViewPager(ViewPager viewPager)
+    {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        Student student =new Student();
+        Business business =new Business();
+        Graph graph =new Graph();
+        Article article =new Article();
+        Testimonial testimonial =new Testimonial();
+
+        adapter.addFragment(student);
+        adapter.addFragment(business);
+        adapter.addFragment(graph);
+        adapter.addFragment(article);
+        adapter.addFragment(testimonial);
+
+        viewPager.setAdapter(adapter);
     }
 
     private void initToolbar() {

@@ -12,14 +12,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mmo.careerlogy.Acivity.StudentSubCategory;
+import com.mmo.careerlogy.Models.ProblemSubCategoryItem;
 import com.mmo.careerlogy.R;
+
+import java.util.List;
 
 public class LearningSubAdapter extends RecyclerView.Adapter<LearningSubAdapter.ViewHolder> {
     Activity activity;
+    List<ProblemSubCategoryItem> problemSubCategories;
 
     String name [] = {"Learning in Class Room","Homework" ,"Exam Date Announcement" , "Day of Exam" , "Reporting Exam to Parent" ,"Day of Result" , "P.T.A Meeting"};
-    public LearningSubAdapter(StudentSubCategory studentSubCategory) {
+    public LearningSubAdapter(StudentSubCategory studentSubCategory, List<ProblemSubCategoryItem> problemSubCategories) {
         this.activity = studentSubCategory;
+        this.problemSubCategories =problemSubCategories;
     }
 
     @NonNull
@@ -31,13 +36,14 @@ public class LearningSubAdapter extends RecyclerView.Adapter<LearningSubAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder)holder;
-        viewHolder.text.setText(name[position]);
+        ProblemSubCategoryItem problem = problemSubCategories.get(position);
+        viewHolder.text.setText(problem.getPSCName());
         viewHolder.icon.setText(String.valueOf(position+1));
     }
 
     @Override
     public int getItemCount() {
-        return name.length;
+        return problemSubCategories.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

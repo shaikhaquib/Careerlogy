@@ -11,14 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mmo.careerlogy.Acivity.EntrepreneurSubCategory;
 import com.mmo.careerlogy.Acivity.StudentSubCategory;
+import com.mmo.careerlogy.Models.ProblemCategoryItem;
+import com.mmo.careerlogy.Models.ProblemSubCategoryItem;
 import com.mmo.careerlogy.R;
+
+import java.util.List;
 
 public class EntrepreneursSubAdapter extends RecyclerView.Adapter<EntrepreneursSubAdapter.ViewHolder> {
     Activity activity;
-
+    List<ProblemSubCategoryItem> problemSubCategories;
     String name [] = {"Learning in Class Room","Homework" ,"Exam Date Announcement" , "Day of Exam" , "Reporting Exam to Parent" ,"Day of Result" , "P.T.A Meeting"};
-    public EntrepreneursSubAdapter(EntrepreneurSubCategory entrepreneursSubAdapter) {
+    public EntrepreneursSubAdapter(EntrepreneurSubCategory entrepreneursSubAdapter, List<ProblemSubCategoryItem> problemSubCategories) {
         this.activity = entrepreneursSubAdapter;
+        this.problemSubCategories =problemSubCategories;
     }
 
     @NonNull
@@ -30,13 +35,14 @@ public class EntrepreneursSubAdapter extends RecyclerView.Adapter<EntrepreneursS
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder)holder;
-        viewHolder.text.setText(name[position]);
+        ProblemSubCategoryItem problem= problemSubCategories.get(position);
+        viewHolder.text.setText(problem.getPSCName());
         viewHolder.icon.setText(String.valueOf(position+1));
     }
 
     @Override
     public int getItemCount() {
-        return name.length;
+        return problemSubCategories.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

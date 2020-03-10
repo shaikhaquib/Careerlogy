@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Acivity.AskQuestionStudent">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_left_arrow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Student"
+                android:layout_marginStart="16dp"
+                android:textAppearance="@style/toolbartext"
+                android:textColor="@android:color/black"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="16dp" />
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Raise Question"
+            android:visibility="visible"
+            android:textAppearance="@style/toolbartext"
+            android:textColor="@android:color/black" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Choose Category"
+            android:textAlignment="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+            android:textColor="@android:color/tertiary_text_light"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dropDownCategory"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose"
+            android:maxLines="1"
+            android:backgroundTint="@android:color/white"
+            android:textColor="@android:color/tab_indicator_text"
+            app:icon="@drawable/ic_arrow_drop_down_black_24dp"
+            app:iconTint="@color/grey_80"
+            app:iconGravity="end"
+            android:textSize="12dp"
+            app:strokeColor="@android:color/tertiary_text_light"
+            app:strokeWidth="2dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Choose Sub Category"
+            android:textAlignment="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+            android:textColor="@android:color/tertiary_text_light"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dropDownSubCategory"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose"
+            android:backgroundTint="@android:color/white"
+            android:textColor="@android:color/tab_indicator_text"
+            app:icon="@drawable/ic_arrow_drop_down_black_24dp"
+            app:iconTint="@color/grey_80"
+            android:maxLines="1"
+            app:iconGravity="end"
+            android:textSize="12dp"
+            app:strokeColor="@android:color/tertiary_text_light"
+            app:strokeWidth="2dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Question Title"
+            android:textAlignment="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+            android:textColor="@android:color/tertiary_text_dark"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/askTitleQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/borderdark"
+            android:inputType="text"
+            android:hint="Your Question Title"
+            android:textSize="12dp"
+            android:maxLines="1"
+            android:padding="16dp"
+            android:singleLine="true"
+            android:theme="@style/EditText.Green" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Your Question"
+            android:textAlignment="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+            android:textColor="@android:color/tertiary_text_dark"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/askQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/borderdark"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:maxLines="4"
+            android:lines="4"
+            android:textSize="12dp"
+            android:hint="Write Your Question"
+            android:padding="16dp"
+            android:singleLine="true"
+            android:theme="@style/EditText.Green" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textColor="@color/grey_3"
+            android:textStyle="bold"
+            app:cornerRadius="16dp"
+            app:rippleColor="@color/colorAccent" />
+
+    </LinearLayout>
+    
+
+   
+
+</ScrollView>

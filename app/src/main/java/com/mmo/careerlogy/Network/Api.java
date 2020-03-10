@@ -1,12 +1,16 @@
 package com.mmo.careerlogy.Network;
 
 
+import com.mmo.careerlogy.Models.AskQuestionResponse;
 import com.mmo.careerlogy.Models.CitiesModel;
 import com.mmo.careerlogy.Models.LoginResponse;
 import com.mmo.careerlogy.Models.ModelUserCategory;
 import com.mmo.careerlogy.Models.OTPResponse;
+import com.mmo.careerlogy.Models.ProblemCategory;
+import com.mmo.careerlogy.Models.ProblemSubCategoryResponse;
 import com.mmo.careerlogy.Models.RegisterResponse;
 import com.mmo.careerlogy.Models.StateModel;
+import com.mmo.careerlogy.Models.TestimonialResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -47,7 +51,6 @@ public interface Api {
             @Field("user_sub_category") String user_sub_category,
             @Field("password") String password
     );
-
     @FormUrlEncoded
     @POST("VerifyUser")
     Call<RegisterResponse>VerifyUser(
@@ -59,6 +62,28 @@ public interface Api {
     Call<OTPResponse>ResendOTP(
             @Field("mobileOrEmail") String mobileOrEmail
     );
+    @FormUrlEncoded
+    @POST("ProblemCategory")
+    Call<ProblemCategory>problemCategory(
+            @Field("usertype") String usertype
+    );
+    @FormUrlEncoded
+    @POST("ProblemSubCategory")
+    Call<ProblemSubCategoryResponse>problemSubCategory(
+            @Field("problemCategoryId") String problemCategoryId
+    );
+    @FormUrlEncoded
+    @POST("YouTubeVideoList")
+    Call<TestimonialResponse>YouTubeVideoList(
+            @Field("offset") String offset
+    );
 
-
+    @FormUrlEncoded
+    @POST("AskQuestion")
+    Call<AskQuestionResponse> AskQuestion(
+            @Field("userId") String userId,
+            @Field("pscId") String pscId,
+            @Field("questionTitle") String ofquestionTitlefset,
+            @Field("question") String question
+    );
 }
