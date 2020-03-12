@@ -2,16 +2,15 @@ package com.mmo.careerlogy.Fragment;
 
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import com.mmo.careerlogy.Extra.UpdateTitle;
-import com.mmo.careerlogy.R;
 import com.mmo.careerlogy.MainActivity;
+import com.mmo.careerlogy.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,7 +32,7 @@ public class Article extends Fragment {
 
         activity= (MainActivity) getActivity();
         updateTitle = activity.updateTitle;
-        updateTitle.updateData("Article");
+      //  updateTitle.updateData("Article");
         return inflater.inflate(R.layout.fragment_article, container, false);
     }
 

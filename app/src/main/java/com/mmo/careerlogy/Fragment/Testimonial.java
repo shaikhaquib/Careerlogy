@@ -58,7 +58,7 @@ public class Testimonial extends Fragment {
         // Inflate the layout for this fragment
         activity= (MainActivity) getActivity();
         updateTitle = activity.updateTitle;
-        updateTitle.updateData("Testimonial Video");
+       // updateTitle.updateData("Testimonial Video");
         return inflater.inflate(R.layout.fragment_testimonial, container, false);
     }
 

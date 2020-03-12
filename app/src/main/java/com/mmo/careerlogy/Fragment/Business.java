@@ -59,7 +59,7 @@ public class Business extends Fragment {
 
         activity= (MainActivity) getActivity();
         updateTitle = activity.updateTitle;
-        updateTitle.updateData("Entrepreneurs");
+    //    updateTitle.updateData("Entrepreneurs");
 
         return inflater.inflate(R.layout.fragment_buisness, container, false);
     }

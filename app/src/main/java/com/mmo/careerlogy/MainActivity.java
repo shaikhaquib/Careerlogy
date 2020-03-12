@@ -7,20 +7,20 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 import androidx.room.Room;
-import androidx.room.RoomDatabase;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.mmo.careerlogy.Acivity.AskQuestionEntrepreneur;
+import com.mmo.careerlogy.Acivity.AskQuestionStudent;
 import com.mmo.careerlogy.Adapter.ViewPagerAdapter;
 import com.mmo.careerlogy.Extra.Constants;
 import com.mmo.careerlogy.Extra.SessionManager;
@@ -41,9 +41,11 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     public UpdateTitle updateTitle;
     TextView title;
+    ImageView icon;
     UserDatabase userDatabase;
     UserinfoItem userinfoItem = new UserinfoItem();
     MenuItem prevMenuItem;
+    ExtendedFloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +59,38 @@ public class MainActivity extends AppCompatActivity {
         bottomNav = findViewById(R.id.navigation);
         viewPager = findViewById(R.id.viewpager);
         title = findViewById(R.id.title);
+        floatingActionButton = findViewById(R.id.floatingActionButton);
+        floatingActionButton.setVisibility(View.GONE);
+        icon = findViewById(R.id.icon);
         viewPager.setOffscreenPageLimit(5);
 
         updateTitle = new UpdateTitle() {
             @Override
-            public void updateData(String Data) {
-                title.setText(Data);
+            public void updateData(int position) {
+                String[] arrTitle = {"Student","Entrepreneur","Graphs","Articles","Testimonial Videos"};
+                int[] arrIcon = {R.drawable.ic_student,R.drawable.ic_business,R.drawable.ic_graph,R.drawable.ic_articles,R.drawable.ic_video};
+                title.setText(arrTitle[position]);
+                icon.setImageResource(arrIcon[position]);
+                if (position == 0){
+                    floatingActionButton.setVisibility(View.VISIBLE);
+                    floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(getApplicationContext(), AskQuestionStudent.class));
+                        }
+                    });
+                }else if (position == 1){
+                    floatingActionButton.setVisibility(View.VISIBLE);
+                    floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(getApplicationContext(), AskQuestionEntrepreneur.class));
+                        }
+                    });
+                }else {
+                    floatingActionButton.setVisibility(View.GONE);
+                }
+
             }
         };
         //Setting the navigation controller to Bottom Nav
@@ -73,18 +101,23 @@ public class MainActivity extends AppCompatActivity {
                         switch (item.getItemId()) {
                             case R.id.studentFragment:
                                 viewPager.setCurrentItem(0);
+                                updateTitle.updateData(0);
                                 break;
                             case R.id.entrepreneurFragment:
                                 viewPager.setCurrentItem(1);
+                                updateTitle.updateData(1);
                                 break;
                             case R.id.graphFragment:
                                 viewPager.setCurrentItem(2);
+                                updateTitle.updateData(2);
                                 break;
                             case R.id.articleFragment:
                                 viewPager.setCurrentItem(3);
+                                updateTitle.updateData(3);
                                 break;
                             case R.id.videoFragment:
                                 viewPager.setCurrentItem(4);
+                                updateTitle.updateData(4);
                                 break;
                         }
                         return false;
@@ -109,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("page", "onPageSelected: "+position);
                 bottomNav.getMenu().getItem(position).setChecked(true);
                 prevMenuItem = bottomNav.getMenu().getItem(position);
+                updateTitle.updateData(position);
 
             }
 
@@ -119,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setupViewPager(viewPager);
+        bottomNav.setSelectedItemId(R.id.studentFragment);
 
     }
 

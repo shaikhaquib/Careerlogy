@@ -56,7 +56,7 @@ public class Student extends Fragment {
         // Inflate the layout for this fragment
         activity= (MainActivity) getActivity();
         updateTitle = activity.updateTitle;
-        updateTitle.updateData("Student");
+     //   updateTitle.updateData("Student");
         return inflater.inflate(R.layout.fragment_student, container, false);
     }
 

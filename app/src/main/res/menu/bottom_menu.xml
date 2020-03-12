@@ -3,23 +3,23 @@
     <item
         android:id="@+id/studentFragment"
         android:icon="@drawable/ic_student"
-        android:title="Home" />
+        android:title="Student" />
     <item
         android:id="@+id/entrepreneurFragment"
         android:icon="@drawable/ic_business"
-        android:title="Favourites" />
+        android:title="Entrepreneur" />
     <item
         android:id="@+id/graphFragment"
         android:icon="@drawable/ic_graph"
-        android:title="Settings" />
+        android:title="Graphs" />
     <item
         android:id="@+id/articleFragment"
         android:icon="@drawable/ic_articles"
-        android:title="Settings" />
+        android:title="Article" />
     <item
         android:id="@+id/videoFragment"
         android:icon="@drawable/ic_video"
-        android:title="Settings" />
+        android:title="Testimonial" />
 
 
 </menu>

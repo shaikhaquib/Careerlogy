@@ -1,7 +1,9 @@
 package com.mmo.careerlogy.Acivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +42,13 @@ public class EntrepreneurSubCategory extends AppCompatActivity {
         setContentView(R.layout.activity_entrepreneur_subcategory);
         initoolBar();
         init();
+
+        findViewById(R.id.floatingActionButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),AskQuestionEntrepreneur.class));
+            }
+        });
 
     }
 

@@ -18,34 +18,17 @@
             android:layout_height="@dimen/spacing_middle" />
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_careerlogy_logo_icon" />
+            android:layout_marginTop="80dp"
+            android:src="@drawable/ic_careerlogy_login_logo" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="@dimen/spacing_large" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:text="CAREERLOGY"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:gravity="center"
-            android:text="Through The Lense \n Of Neuroscience"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-            android:textColor="@color/colorPrimary" />
 
         <View
             android:layout_width="0dp"

@@ -10,17 +10,19 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
+        android:background="@android:color/white"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleTextAppearance="@style/toolbartext"
+            android:background="@android:color/white"
+            app:expandedTitleMarginStart="15dp"
+            app:contentScrim="@android:color/white"
+            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <LinearLayout
@@ -35,7 +37,10 @@
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLength="20"
+                    android:text="Testimonial Video "
+                    android:textSize="32dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:textAppearance="@style/toolbartext"
                     android:textStyle="bold" />
 
@@ -57,10 +62,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/ic_back"
+                app:navigationIcon="@drawable/ic_left_arrow"
                 android:textAppearance="@style/toolbartext"
+                app:titleTextColor="@android:color/black"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/background_gradient" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
 
@@ -75,6 +85,22 @@
         android:clipToPadding="false"
         android:padding="@dimen/spacing_mlarge"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:text="Raise Question"
+        app:icon="@drawable/ic_add_black_24dp"
+        android:textColor="@android:color/white"
+        app:iconTint="@android:color/white"
+        app:backgroundTint="@color/colorPrimary"
+        android:clickable="true"
+        android:src="@drawable/ic_add_black_24dp" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
