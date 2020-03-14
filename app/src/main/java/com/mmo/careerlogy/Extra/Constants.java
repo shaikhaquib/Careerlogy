@@ -1,10 +1,10 @@
 package com.mmo.careerlogy.Extra;
 
 import android.content.Context;
-import android.content.Intent;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -27,5 +27,21 @@ public class Constants
         SimpleDateFormat df2 = new SimpleDateFormat(format);
         return df2.format(date);
     }
+    public static String Date(String time)  {
+        if (time != null) {
+            String df = "yyyy-MM-dd hh:mm:ss";
+            String resultFormat = "dd/MM/yyyy";
+            Date date = null;
+            try {
+                date = new SimpleDateFormat(df).parse(time);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return new SimpleDateFormat("dd MMM yyyy").format(date);
+        }else {
+            return "unknown";
+        }
+    }
+
 
 }

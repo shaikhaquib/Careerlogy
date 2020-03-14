@@ -9,17 +9,22 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.mmo.careerlogy.Adapter.EntrepreneursSubAdapter;
+import com.mmo.careerlogy.Adapter.QuestionsHistAdapter;
+import com.mmo.careerlogy.Extra.Constants;
 import com.mmo.careerlogy.Extra.ItemClickListener;
 import com.mmo.careerlogy.Extra.MyItemDecoration;
 import com.mmo.careerlogy.Extra.Progress;
-import com.mmo.careerlogy.Models.ProblemSubCategoryItem;
-import com.mmo.careerlogy.Models.ProblemSubCategoryResponse;
+import com.mmo.careerlogy.Fragment.DialogFullscreenFragment;
+import com.mmo.careerlogy.LoginActivity;
+import com.mmo.careerlogy.Models.HistoryResponse;
+import com.mmo.careerlogy.Models.QuestionsHistoryItem;
 import com.mmo.careerlogy.Network.RetrofitClient;
 import com.mmo.careerlogy.R;
 
@@ -30,17 +35,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EntrepreneurSubCategory extends AppCompatActivity {
-
-
+public class QuestionHistory extends AppCompatActivity {
     RecyclerView rvLearningSub;
     RecyclerView.Adapter entrepreneursSubAdapter;
-    private List<ProblemSubCategoryItem> problemSubCategories = new ArrayList<>();
-
+    List<QuestionsHistoryItem> questions = new ArrayList<>();
+    int DIALOG_QUEST_CODE = 9001;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_entrepreneur_subcategory);
+        setContentView(R.layout.activity_question_list);
+
         initoolBar();
         init();
 
@@ -89,22 +93,53 @@ public class EntrepreneurSubCategory extends AppCompatActivity {
         ItemClickListener itemClickListener = new ItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                ProblemSubCategoryItem categoryItem = problemSubCategories.get(pos);
-                Intent intent = new Intent(getApplicationContext(), QuestionList.class);
-                intent.putExtra("probSubCategory",categoryItem.getPSCID());
-                intent.putExtra("title",categoryItem.getPSCName());
-                intent.putExtra("type","1");
-                startActivity(intent);
+                QuestionsHistoryItem categoryItem = questions.get(pos);
+                int id = v.getId();
+                if (id == R.id.viewAnswer)
+                {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(DialogFullscreenFragment.questinedBy,LoginActivity.USER.getUMName());
+                    bundle.putString(DialogFullscreenFragment.questinedOn, Constants.Date(categoryItem.getQAddedDateTime()));
+                    bundle.putString(DialogFullscreenFragment.questinedAnswer,categoryItem.getAAnswer());
+                    bundle.putString(DialogFullscreenFragment.questinedDesc,categoryItem.getQQuestion());
+                    bundle.putString(DialogFullscreenFragment.questinedTitle,categoryItem.getQQuestionTitle());
+
+                    showDialogFullscreen(bundle,getSupportFragmentManager());
+                }
+
             }
         };
 
-        rvLearningSub =findViewById(R.id.rvLearningSub);
+        rvLearningSub =findViewById(R.id.rvQuestionList);
         rvLearningSub.setHasFixedSize(true);
         rvLearningSub.setLayoutManager(new LinearLayoutManager(this));
         rvLearningSub.addItemDecoration(new MyItemDecoration());
-        entrepreneursSubAdapter = new EntrepreneursSubAdapter(this,problemSubCategories,itemClickListener);
+        entrepreneursSubAdapter = new QuestionsHistAdapter(this,questions, itemClickListener);
         rvLearningSub.setAdapter(entrepreneursSubAdapter);
-        getCategory();
+            getCategoryHistory();
+
+    }
+
+    private void getCategoryHistory() {
+        final Progress progress = new Progress(QuestionHistory.this);
+        progress.show();
+        Call<HistoryResponse> call = RetrofitClient.getInstance().getApi().QuestionHistoryList(LoginActivity.USER.getUMID(),"0");
+        call.enqueue(new Callback<HistoryResponse>() {
+            @Override
+            public void onResponse(Call<HistoryResponse> call, Response<HistoryResponse> response) {
+                progress.dismiss();
+                if (response.isSuccessful()) {
+                    questions.addAll(response.body().getQuestionsHistory());
+                    entrepreneursSubAdapter.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<HistoryResponse> call, Throwable t) {
+                progress.dismiss();
+            }
+        });
     }
 
     @Override
@@ -117,25 +152,20 @@ public class EntrepreneurSubCategory extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void getCategory() {
-        final Progress progress = new Progress(EntrepreneurSubCategory.this);
-        progress.show();
-        Call<ProblemSubCategoryResponse> call = RetrofitClient.getInstance().getApi().problemSubCategory(getIntent().getStringExtra("problemCategoryId"));
-        call.enqueue(new Callback<ProblemSubCategoryResponse>() {
+    public static void showDialogFullscreen(Bundle args, FragmentManager fragmentManager ) {
+        DialogFullscreenFragment newFragment = new DialogFullscreenFragment();
+        newFragment.setRequestCode(9003);
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        newFragment.setArguments(args);
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        transaction.add(android.R.id.content, newFragment).addToBackStack(null).commit();
+        newFragment.setOnCallbackResult(new DialogFullscreenFragment.CallbackResult() {
             @Override
-            public void onResponse(Call<ProblemSubCategoryResponse> call, Response<ProblemSubCategoryResponse> response) {
-                progress.dismiss();
-                if (response.isSuccessful()) {
-                    problemSubCategories.addAll(response.body().getProblemSubCategory());
-                    entrepreneursSubAdapter.notifyDataSetChanged();
+            public void sendResult(int requestCode, Object obj) {
+                if (requestCode == 9003) {
                 }
-
-            }
-
-            @Override
-            public void onFailure(Call<ProblemSubCategoryResponse> call, Throwable t) {
-                progress.dismiss();
             }
         });
     }
+
 }

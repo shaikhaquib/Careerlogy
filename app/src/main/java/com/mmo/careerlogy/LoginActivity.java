@@ -147,6 +147,15 @@ public class LoginActivity extends AppCompatActivity {
 
     private class GetUsersAsyncTask extends AsyncTask<Void, Void, List<UserinfoItem>>
     {
+        Progress progress;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progress = new Progress(LoginActivity. this);
+            progress.show();
+        }
+
         @Override
         protected List<UserinfoItem> doInBackground(Void... url) {
             return userDatabase.dbAccess().getUserDetail();
@@ -167,7 +176,9 @@ public class LoginActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            progress.dismiss();
         }
+
     }
 
 }

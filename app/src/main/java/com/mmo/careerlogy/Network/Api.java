@@ -3,11 +3,13 @@ package com.mmo.careerlogy.Network;
 
 import com.mmo.careerlogy.Models.AskQuestionResponse;
 import com.mmo.careerlogy.Models.CitiesModel;
+import com.mmo.careerlogy.Models.HistoryResponse;
 import com.mmo.careerlogy.Models.LoginResponse;
 import com.mmo.careerlogy.Models.ModelUserCategory;
 import com.mmo.careerlogy.Models.OTPResponse;
 import com.mmo.careerlogy.Models.ProblemCategory;
 import com.mmo.careerlogy.Models.ProblemSubCategoryResponse;
+import com.mmo.careerlogy.Models.QuestionListResponse;
 import com.mmo.careerlogy.Models.RegisterResponse;
 import com.mmo.careerlogy.Models.StateModel;
 import com.mmo.careerlogy.Models.TestimonialResponse;
@@ -86,4 +88,18 @@ public interface Api {
             @Field("questionTitle") String ofquestionTitlefset,
             @Field("question") String question
     );
+
+    @FormUrlEncoded
+    @POST("QuestionListOfProbSubCategory")
+    Call<QuestionListResponse> QuestionListOfProbSubCategory(
+            @Field("probSubCategory") String probSubCategory,
+            @Field("offset") String offset
+            );
+
+    @FormUrlEncoded
+    @POST("QuestionHistoryList")
+    Call<HistoryResponse> QuestionHistoryList(
+            @Field("userId") String userId,
+            @Field("offset") String offset
+            );
 }

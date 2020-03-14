@@ -1,17 +1,16 @@
 package com.mmo.careerlogy.Adapter;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mmo.careerlogy.Acivity.StudentSubCategory;
+import com.mmo.careerlogy.Extra.ItemClickListener;
 import com.mmo.careerlogy.Models.ProblemSubCategoryItem;
 import com.mmo.careerlogy.R;
 
@@ -20,11 +19,13 @@ import java.util.List;
 public class LearningSubAdapter extends RecyclerView.Adapter<LearningSubAdapter.ViewHolder> {
     Activity activity;
     List<ProblemSubCategoryItem> problemSubCategories;
+    ItemClickListener itemClickListener;
 
     String name [] = {"Learning in Class Room","Homework" ,"Exam Date Announcement" , "Day of Exam" , "Reporting Exam to Parent" ,"Day of Result" , "P.T.A Meeting"};
-    public LearningSubAdapter(StudentSubCategory studentSubCategory, List<ProblemSubCategoryItem> problemSubCategories) {
+    public LearningSubAdapter(StudentSubCategory studentSubCategory, List<ProblemSubCategoryItem> problemSubCategories, ItemClickListener itemClickListener) {
         this.activity = studentSubCategory;
         this.problemSubCategories =problemSubCategories;
+        this.itemClickListener= itemClickListener;
     }
 
     @NonNull
@@ -61,6 +62,7 @@ public class LearningSubAdapter extends RecyclerView.Adapter<LearningSubAdapter.
 
         @Override
         public void onClick(View view) {
+            itemClickListener.onItemClick(view,getAdapterPosition());
         }
     }
 

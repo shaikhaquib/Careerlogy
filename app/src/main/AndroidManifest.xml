@@ -12,9 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Acivity.AskQuestionEntrepreneur"
+        <activity android:name=".Acivity.QuestionHistory"
+            android:theme="@style/AppNoActionBar"></activity>
+        <activity
+            android:name=".Acivity.QuestionList"
+            android:theme="@style/AppNoActionBar" />
+        <activity
+            android:name=".Acivity.AskQuestionEntrepreneur"
             android:theme="@style/AppNoActionBar"
-            android:windowSoftInputMode="stateHidden"   />
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Acivity.AskQuestionStudent"
             android:theme="@style/AppNoActionBar"
