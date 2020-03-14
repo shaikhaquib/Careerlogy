@@ -1,6 +1,7 @@
 package com.mmo.careerlogy;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,13 +13,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.ui.AppBarConfiguration;
 import androidx.room.Room;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.mmo.careerlogy.Acivity.AskQuestionEntrepreneur;
 import com.mmo.careerlogy.Acivity.AskQuestionStudent;
 import com.mmo.careerlogy.Adapter.ViewPagerAdapter;
@@ -35,7 +42,7 @@ import com.mmo.careerlogy.Network.UserDatabase;
 
 import static com.mmo.careerlogy.LoginActivity.USER;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
     BottomNavigationView bottomNav;
     ViewPager viewPager;
@@ -46,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     UserinfoItem userinfoItem = new UserinfoItem();
     MenuItem prevMenuItem;
     ExtendedFloatingActionButton floatingActionButton;
+    private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,8 +188,63 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setNavigationIcon(R.drawable.ic_menu);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        final CollapsingToolbarLayout collapsingToolbarLayout =  findViewById(R.id.collapsing_toolbar);
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = true;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    collapsingToolbarLayout.setTitle(title.getText().toString());
+                    isShow = true;
+                } else if(isShow) {
+                    collapsingToolbarLayout.setTitle(" ");//careful there should a space between double quote otherwise it wont work
+                    isShow = false;
+                }
+            }
+        });
+
+
+        initNavigationMenu(toolbar);
     }
+
+    private void initNavigationMenu(Toolbar toolbar) {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        mAppBarConfiguration = new AppBarConfiguration.Builder()
+                .setDrawerLayout(drawer)
+                .build();
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+         toggle.setHomeAsUpIndicator(R.drawable.ic_menu);
+         toggle.getDrawerArrowDrawable().setColor(Color.BLACK);
+
+      //  toggle.setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_menu));
+      //  toggle.setDrawerIndicatorEnabled(true);
+        toggle.syncState();
+
+
+        final View headerLayout = navigationView.inflateHeaderView(R.layout.nav_header_main);
+        TextView userName = headerLayout.findViewById(R.id.hdUName);
+        userName.setText(USER.getUMName());
+
+        // open drawer at start
+        // drawer.openDrawer(GravityCompat.START);
+    }
+
 
 
     @Override
@@ -213,4 +276,23 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.logout:
+                new SessionManager(this).setLogin(false);
+                finish();
+                new AsyncTask<Void,Void,Void>() {
+                    @Override
+                    protected Void doInBackground(Void[] objects) {
+                        userDatabase.dbAccess().deleteUser(USER);
+                        return null;
+                    }
+                }.execute();
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                break;
+        }
+        return true;
+    }
 }

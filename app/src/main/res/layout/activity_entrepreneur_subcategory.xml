@@ -23,7 +23,7 @@
             android:background="@android:color/white"
             app:expandedTitleMarginStart="15dp"
             app:contentScrim="@android:color/white"
-            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
+            app:collapsedTitleTextAppearance="@style/collapsingToolbarLayoutTitleColor"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <LinearLayout

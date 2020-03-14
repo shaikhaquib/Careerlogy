@@ -9,6 +9,10 @@
     </style>
 
 
+    <style name="collapsingToolbarLayoutTitleColor" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
 
     <style name="AppNoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
