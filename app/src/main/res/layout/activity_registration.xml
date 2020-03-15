@@ -13,20 +13,12 @@
         android:orientation="vertical"
         android:padding="@dimen/spacing_large">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="CAREERLOGY"
-            android:textColor="@android:color/white"
-            android:textSize="26dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Through The Lense Of Neuroscience"
-            android:textColor="@android:color/white"
-            android:textSize="10sp" />
+            android:tint="@android:color/white"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_careerlogy_login_logo"/>
 
         <LinearLayout
             android:layout_width="330dp"
@@ -108,7 +100,7 @@
                 android:background="@android:color/transparent"
                 android:text="Choose"
                 android:textColor="@android:color/white"
-                app:icon="@android:drawable/arrow_down_float"
+                app:icon="@drawable/ic_arrow_drop_down_black_24dp"
                 app:iconGravity="end"
                 app:strokeColor="@android:color/white"
                 app:strokeWidth="2dp" />
@@ -133,7 +125,7 @@
                 android:background="@android:color/transparent"
                 android:text="Choose"
                 android:textColor="@android:color/white"
-                app:icon="@android:drawable/arrow_down_float"
+                app:icon="@drawable/ic_arrow_drop_down_black_24dp"
                 app:iconGravity="end"
                 app:strokeColor="@android:color/white"
                 app:strokeWidth="2dp" />
@@ -208,7 +200,7 @@
                 android:background="@android:color/transparent"
                 android:text="Choose"
                 android:textColor="@android:color/white"
-                app:icon="@android:drawable/arrow_down_float"
+                app:icon="@drawable/ic_arrow_drop_down_black_24dp"
                 app:iconGravity="end"
                 app:strokeColor="@android:color/white"
                 app:strokeWidth="2dp" />
@@ -232,7 +224,7 @@
                 android:background="@android:color/transparent"
                 android:text="Choose"
                 android:textColor="@android:color/white"
-                app:icon="@android:drawable/arrow_down_float"
+                app:icon="@drawable/ic_arrow_drop_down_black_24dp"
                 app:iconGravity="end"
                 app:strokeColor="@android:color/white"
                 app:strokeWidth="2dp" />
@@ -260,7 +252,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:buttonTint="@android:color/holo_green_light"
-                    android:text="Enterpreneur"
+                    android:text="Entrepreneur"
                     android:textColor="@android:color/white" />
 
 
@@ -288,7 +280,7 @@
                 android:background="@android:color/transparent"
                 android:text="Choose"
                 android:textColor="@android:color/white"
-                app:icon="@android:drawable/arrow_down_float"
+                app:icon="@drawable/ic_arrow_drop_down_black_24dp"
                 app:iconGravity="end"
                 app:strokeColor="@android:color/white"
                 app:strokeWidth="2dp" />
@@ -358,6 +350,18 @@
                 android:textStyle="bold"
                 app:cornerRadius="16dp"
                 app:rippleColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ALREADY HAVE ACCOUNT? LOGIN"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:layout_margin="16dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@android:color/white" />
+
 
 
         </LinearLayout>

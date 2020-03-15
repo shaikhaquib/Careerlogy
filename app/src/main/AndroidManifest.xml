@@ -12,8 +12,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Acivity.QuestionHistory"
-            android:theme="@style/AppNoActionBar"></activity>
+        <activity android:name=".Acivity.UploadFile"
+            android:theme="@style/AppNoActionBar"/>
+        <activity
+            android:name=".Acivity.YoutubeLinkUpload"
+            android:theme="@style/AppNoActionBar">
+        </activity>
+        <activity
+            android:name=".Acivity.AdminQuestionList"
+            android:theme="@style/AppNoActionBar" />
+        <activity
+            android:name=".AdminDash"
+            android:theme="@style/AppNoActionBar" />
+        <activity
+            android:name=".Acivity.QuestionHistory"
+            android:theme="@style/AppNoActionBar" />
         <activity
             android:name=".Acivity.QuestionList"
             android:theme="@style/AppNoActionBar" />

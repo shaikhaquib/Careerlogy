@@ -240,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         final View headerLayout = navigationView.inflateHeaderView(R.layout.nav_header_main);
         TextView userName = headerLayout.findViewById(R.id.hdUName);
-        userName.setText(USER.getUMName());
+        userName.setText(Constants.capitalize(USER.getUMName()));
 
         // open drawer at start
         // drawer.openDrawer(GravityCompat.START);

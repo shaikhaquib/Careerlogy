@@ -34,7 +34,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class Registration extends AppCompatActivity {
     private static final String TAG = "Registration";
@@ -95,6 +94,13 @@ public class Registration extends AppCompatActivity {
             public void onClick(View view) {
                 if (isValidForm())
                     RegisterUser();
+            }
+        });
+
+        findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
             }
         });
 

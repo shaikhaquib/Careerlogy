@@ -167,9 +167,13 @@ public class LoginActivity extends AppCompatActivity {
             try {
                if (userinfoItems.get(0).getUMUserStatus().equals("Verified")){
                    Log.d(TAG, "onPostExecute: "+userinfoItems.get(0).getUMName());
-                USER = userinfoItems.get(0);
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                finish();
+                     USER = userinfoItems.get(0);
+                     if (USER.getUMType().equalsIgnoreCase("U")){
+                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                     finish();}else {
+                         startActivity(new Intent(getApplicationContext(),AdminDash.class));
+                         finish();
+                     }
                }else {
                    startActivity(new Intent(getApplicationContext(), UserVerification.class).putExtra("mob",userinfoItems.get(0).getUMName()));
                }

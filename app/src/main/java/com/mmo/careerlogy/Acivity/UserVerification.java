@@ -1,7 +1,5 @@
 package com.mmo.careerlogy.Acivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,15 +8,17 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.alimuzaffar.lib.pin.PinEntryEditText;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.mmo.careerlogy.Extra.Constants;
+import com.mmo.careerlogy.Extra.Progress;
 import com.mmo.careerlogy.LoginActivity;
 import com.mmo.careerlogy.Models.OTPResponse;
 import com.mmo.careerlogy.Models.RegisterResponse;
 import com.mmo.careerlogy.Network.RetrofitClient;
 import com.mmo.careerlogy.R;
-import com.mmo.careerlogy.Registration;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,6 +28,8 @@ public class UserVerification extends AppCompatActivity {
 
     PinEntryEditText pinEntryEditText;
     TextView resendOtp;
+    Progress progress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -35,7 +37,7 @@ public class UserVerification extends AppCompatActivity {
         setContentView(R.layout.otplayout);
         pinEntryEditText = findViewById(R.id.txt_pin_entry);
         resendOtp = findViewById(R.id.resendOtp);
-
+        progress = new Progress(UserVerification.this);
         pinEntryEditText.setOnPinEnteredListener(new PinEntryEditText.OnPinEnteredListener() {
             @Override
             public void onPinEntered(CharSequence str) {
@@ -52,11 +54,12 @@ public class UserVerification extends AppCompatActivity {
     }
 
     private void VerifyUser(String otp) {
+        progress.show();
         Call<RegisterResponse>call= RetrofitClient.getInstance().getApi().VerifyUser(getIntent().getStringExtra("mob"),otp);
         call.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-
+                progress.dismiss();
                 if (response.isSuccessful()) {
                     if (response.body().isError()) {
                         Constants.Alert(UserVerification.this, response.body().getMessage());
@@ -78,18 +81,20 @@ public class UserVerification extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
-
+                progress.dismiss();
             }
         });
     }
 
 
     public static void ResendOtp(final Context context,String mob) {
+       final Progress progress = new Progress(context);
+       progress.show();
         Call<OTPResponse>call= RetrofitClient.getInstance().getApi().ResendOTP(mob);
         call.enqueue(new Callback<OTPResponse>() {
             @Override
             public void onResponse(Call<OTPResponse> call, Response<OTPResponse> response) {
-
+                    progress.dismiss();
                 if (response.isSuccessful()) {
                     if (response.body().isError()) {
                         Constants.Alert(context, response.body().getErrormsg());
@@ -101,7 +106,7 @@ public class UserVerification extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<OTPResponse> call, Throwable t) {
-
+                progress.dismiss();
             }
         });
     }

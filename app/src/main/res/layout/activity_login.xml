@@ -63,7 +63,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PASSWORD"
+            android:text="Password"
             android:textAlignment="center"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
             android:textColor="@color/blue_grey_200" />
@@ -90,7 +90,7 @@
             android:id="@+id/signIN"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:text="S I G N  I N"
+            android:text="Login"
             android:backgroundTint="@color/colorPrimary"
             android:layout_marginTop="10dp"
             android:textAllCaps="false"
