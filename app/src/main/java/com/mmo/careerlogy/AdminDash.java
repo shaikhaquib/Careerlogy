@@ -20,13 +20,13 @@ public class AdminDash extends AppCompatActivity {
         findViewById(R.id.adminStudent).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AdminQuestionList.class));
+                startActivity(new Intent(getApplicationContext(), AdminQuestionList.class).putExtra("userType", "student"));
             }
         });
         findViewById(R.id.adminEntrepreneur).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AdminQuestionList.class));
+                startActivity(new Intent(getApplicationContext(), AdminQuestionList.class).putExtra("userType", "entrepreneurship"));
             }
         });
         findViewById(R.id.adminUploadDocument).setOnClickListener(new View.OnClickListener() {

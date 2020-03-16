@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:orientation="vertical"
+    app:cardCornerRadius="8dp"
+    app:strokeColor="#c2c2c2"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/bookmark"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginLeft="-18dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_ribbon"
+                android:tint="@color/colorPrimary" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/bookmark"
+                android:layout_alignRight="@+id/bookmark"
+                android:layout_marginLeft="-8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="4dp">
+
+                    <TextView
+                        android:id="@+id/questinedBy"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:fontFamily="@font/roboto_regular"
+                        android:maxLines="2"
+                        android:text="Mohammad Shahbaz"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/questinedOn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_weight="3"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:text="18-03-2020"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/questinedTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:maxLines="2"
+                    android:text="How to concentrate while teacher is teaching ?"
+                    android:textColor="@color/grey_60"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/questinedDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:autoLink="web"
+                    android:fontFamily="@font/roboto_regular"
+                    android:maxLines="5"
+                    android:text="How to concentrate while teacher is teaching ?How to concentrate while teacher is teaching ?How to concentrate while teacher is teaching ?How to concentrate while teacher is teaching ?"
+                    android:textColor="@color/grey_40"
+                    android:textColorLink="@color/colorPrimary"
+                    android:textSize="13sp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/issue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingLeft="40dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:textColor="@android:color/white"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/roboto_bold"
+            android:paddingLeft="30dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:singleLine="true"
+            android:text="Category"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/answerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/answeredBy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Answered by Admin"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/answeredOn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="12-04-2020"
+                    android:textColor="@color/material_on_background_emphasis_medium"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/viewAnswer"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:text="View"
+                android:textAllCaps="false"
+                app:cornerRadius="8dp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

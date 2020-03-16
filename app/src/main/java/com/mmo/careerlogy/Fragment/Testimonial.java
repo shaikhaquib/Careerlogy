@@ -125,7 +125,7 @@ public class Testimonial extends Fragment {
                 }
             }
         });
-        loadVideo("1");
+        loadVideo("0");
 
     }
 

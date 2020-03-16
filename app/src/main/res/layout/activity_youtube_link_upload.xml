@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
-    tools:context=".Acivity.EntrepreneurSubCategory">
+    tools:context=".Acivity.YoutubeLinkUpload">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -157,7 +157,7 @@
 
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnSubmit"
+                    android:id="@+id/btnSubmitvideo"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="10dp"

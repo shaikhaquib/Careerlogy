@@ -1,6 +1,7 @@
 package com.mmo.careerlogy.Network;
 
 
+import com.mmo.careerlogy.Models.AskQuestionByUserResponse;
 import com.mmo.careerlogy.Models.AskQuestionResponse;
 import com.mmo.careerlogy.Models.CitiesModel;
 import com.mmo.careerlogy.Models.HistoryResponse;
@@ -13,12 +14,17 @@ import com.mmo.careerlogy.Models.QuestionListResponse;
 import com.mmo.careerlogy.Models.RegisterResponse;
 import com.mmo.careerlogy.Models.StateModel;
 import com.mmo.careerlogy.Models.TestimonialResponse;
+import com.mmo.careerlogy.Models.UploadTestimonialResponse;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 public interface Api {
 
@@ -97,9 +103,35 @@ public interface Api {
             );
 
     @FormUrlEncoded
+    @POST("GetAskQuestionByUser")
+    Call<AskQuestionByUserResponse> GetAskQuestionByUser(
+            @Field("usertype") String usertype,
+            @Field("offset") String offset
+    );
+
+    @FormUrlEncoded
     @POST("QuestionHistoryList")
     Call<HistoryResponse> QuestionHistoryList(
             @Field("userId") String userId,
             @Field("offset") String offset
             );
+
+    @FormUrlEncoded
+    @POST("AddYouTubeLink")
+    Call<UploadTestimonialResponse> AddYouTubeLink(
+            @Field("videolink") String videolink,
+            @Field("title") String title,
+            @Field("description") String description,
+            @Field("userId") String userId
+    );
+
+    @Multipart
+    @POST("UploadDocument")
+    Call<UploadTestimonialResponse> UploadDocument(
+            @Part("userId") RequestBody userId,
+            @Part("docType") RequestBody docType,
+            @Part("document") MultipartBody.Part file
+    );
+
+
 }
