@@ -12,6 +12,7 @@ import com.mmo.careerlogy.Models.OTPResponse;
 import com.mmo.careerlogy.Models.ProblemCategory;
 import com.mmo.careerlogy.Models.ProblemSubCategoryResponse;
 import com.mmo.careerlogy.Models.QuestionListResponse;
+import com.mmo.careerlogy.Models.RecentResponse;
 import com.mmo.careerlogy.Models.RegisterResponse;
 import com.mmo.careerlogy.Models.StateModel;
 import com.mmo.careerlogy.Models.TestimonialResponse;
@@ -130,6 +131,13 @@ public interface Api {
     @POST("GetMainGraph")
     Call<GraphsResponse> GetMainGraph(
             @Field("Type") String Type
+    );
+
+    @FormUrlEncoded
+    @POST("GetRecentlyAnsweredQuestions")
+    Call<RecentResponse> GetRecentlyAnsweredQuestions(
+            @Field("offset") String offset,
+            @Field("userType") String userType
     );
 
     @Multipart
