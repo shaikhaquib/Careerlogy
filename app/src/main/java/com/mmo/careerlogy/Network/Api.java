@@ -4,6 +4,7 @@ package com.mmo.careerlogy.Network;
 import com.mmo.careerlogy.Models.AskQuestionByUserResponse;
 import com.mmo.careerlogy.Models.AskQuestionResponse;
 import com.mmo.careerlogy.Models.CitiesModel;
+import com.mmo.careerlogy.Models.GraphsResponse;
 import com.mmo.careerlogy.Models.HistoryResponse;
 import com.mmo.careerlogy.Models.LoginResponse;
 import com.mmo.careerlogy.Models.ModelUserCategory;
@@ -123,6 +124,12 @@ public interface Api {
             @Field("title") String title,
             @Field("description") String description,
             @Field("userId") String userId
+    );
+
+    @FormUrlEncoded
+    @POST("GetMainGraph")
+    Call<GraphsResponse> GetMainGraph(
+            @Field("Type") String Type
     );
 
     @Multipart
