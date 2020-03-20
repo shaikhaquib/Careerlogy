@@ -71,6 +71,8 @@ public class AskedQuestionListAdapter extends RecyclerView.Adapter<AskedQuestion
             questinedBy.setText(LoginActivity.USER.getUMName());
             viewAnswer.setOnClickListener(this);
 
+            itemView.setOnClickListener(this);
+
         }
 
         @Override

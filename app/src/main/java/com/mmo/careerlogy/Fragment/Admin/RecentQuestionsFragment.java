@@ -1,6 +1,7 @@
 package com.mmo.careerlogy.Fragment.Admin;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mmo.careerlogy.Acivity.AdminQuestionList;
+import com.mmo.careerlogy.Acivity.AnswertheQuestionActivity;
 import com.mmo.careerlogy.Adapter.AskedQuestionListAdapter;
 import com.mmo.careerlogy.Extra.ItemClickListener;
 import com.mmo.careerlogy.Extra.MyItemDecoration;
@@ -57,7 +59,9 @@ public class RecentQuestionsFragment extends Fragment {
             @Override
             public void onItemClick(View v, int pos) {
                 AskedQuestionListItem categoryItem = problemSubCategories.get(pos);
-
+                Intent intent = new Intent(getActivity(), AnswertheQuestionActivity.class);
+                intent.putExtra("categoryItem", categoryItem);
+                startActivity(intent);
             }
         };
 

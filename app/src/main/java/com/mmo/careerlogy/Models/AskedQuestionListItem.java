@@ -2,7 +2,9 @@ package com.mmo.careerlogy.Models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class AskedQuestionListItem {
+import java.io.Serializable;
+
+public class AskedQuestionListItem implements Serializable {
 
     @SerializedName("UM_Name")
     private String uMName;

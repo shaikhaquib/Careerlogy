@@ -20,6 +20,7 @@
             android:textSize="32dp"
             android:text="Admin"/>
         <TextView
+            android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/toolbartext"
