@@ -75,6 +75,7 @@ public class RecentQuestionsFragment extends Fragment {
     }
 
     private void getRecentQuestions() {
+        problemSubCategories.clear();
         final Progress progress = new Progress(getActivity());
         progress.show();
         Activity activity = (AdminQuestionList) getActivity();

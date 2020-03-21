@@ -92,6 +92,7 @@ public class RecentAnswerFragment extends Fragment {
     }
 
     private void getRecentQuestions() {
+        recentlyAnsweredQuestionsItems.clear();
         final Progress progress = new Progress(getActivity());
         progress.show();
         Activity activity = (AdminQuestionList) getActivity();
