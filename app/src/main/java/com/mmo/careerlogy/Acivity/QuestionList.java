@@ -19,7 +19,7 @@ import com.mmo.careerlogy.Extra.Constants;
 import com.mmo.careerlogy.Extra.ItemClickListener;
 import com.mmo.careerlogy.Extra.MyItemDecoration;
 import com.mmo.careerlogy.Extra.Progress;
-import com.mmo.careerlogy.Fragment.DialogFullscreenFragment;
+import com.mmo.careerlogy.Fragment.AnswerFragment;
 import com.mmo.careerlogy.LoginActivity;
 import com.mmo.careerlogy.Models.QuestionListResponse;
 import com.mmo.careerlogy.Models.QuestionsOfProblemSubCategoryItem;
@@ -99,11 +99,11 @@ public class QuestionList extends AppCompatActivity {
                 if (id == R.id.viewAnswer)
                 {
                     Bundle bundle = new Bundle();
-                    bundle.putString(DialogFullscreenFragment.questinedBy, LoginActivity.USER.getUMName());
-                    bundle.putString(DialogFullscreenFragment.questinedOn, Constants.Date(categoryItem.getQAddedDateTime()));
-                    bundle.putString(DialogFullscreenFragment.questinedAnswer,categoryItem.getAAnswer());
-                    bundle.putString(DialogFullscreenFragment.questinedDesc,categoryItem.getQQuestion());
-                    bundle.putString(DialogFullscreenFragment.questinedTitle,categoryItem.getQQuestionTitle());
+                    bundle.putString(AnswerFragment.questinedBy, LoginActivity.USER.getUMName());
+                    bundle.putString(AnswerFragment.questinedOn, Constants.Date(categoryItem.getQAddedDateTime()));
+                    bundle.putString(AnswerFragment.questinedAnswer, categoryItem.getAAnswer());
+                    bundle.putString(AnswerFragment.questinedDesc, categoryItem.getQQuestion());
+                    bundle.putString(AnswerFragment.questinedTitle, categoryItem.getQQuestionTitle());
 
                     showDialogFullscreen(bundle,getSupportFragmentManager());
                 }

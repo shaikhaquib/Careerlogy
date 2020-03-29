@@ -1,11 +1,11 @@
 package com.mmo.careerlogy.Fragment.Admin;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,13 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mmo.careerlogy.Acivity.AdminQuestionList;
-import com.mmo.careerlogy.Adapter.QuestionsHistAdapter;
 import com.mmo.careerlogy.Adapter.RecentlyAnswerdAdapter;
 import com.mmo.careerlogy.Extra.Constants;
 import com.mmo.careerlogy.Extra.ItemClickListener;
 import com.mmo.careerlogy.Extra.MyItemDecoration;
 import com.mmo.careerlogy.Extra.Progress;
-import com.mmo.careerlogy.Fragment.DialogFullscreenFragment;
+import com.mmo.careerlogy.Fragment.AnswerFragment;
 import com.mmo.careerlogy.LoginActivity;
 import com.mmo.careerlogy.Models.RecentResponse;
 import com.mmo.careerlogy.Models.RecentlyAnsweredQuestionsItem;
@@ -41,9 +40,9 @@ import retrofit2.Response;
  */
 public class RecentAnswerFragment extends Fragment {
 
-
     RecyclerView rvLearningSub;
     RecyclerView.Adapter adapter;
+    EditNameDialogListener listener;
     private List<RecentlyAnsweredQuestionsItem> recentlyAnsweredQuestionsItems = new ArrayList<>();
 
 
@@ -71,11 +70,12 @@ public class RecentAnswerFragment extends Fragment {
                 if (id == R.id.viewAnswer)
                 {
                     Bundle bundle = new Bundle();
-                    bundle.putString(DialogFullscreenFragment.questinedBy, LoginActivity.USER.getUMName());
-                    bundle.putString(DialogFullscreenFragment.questinedOn, Constants.Date(recentlyAnsweredQuestionsItem2.getQAddedDateTime()));
-                    bundle.putString(DialogFullscreenFragment.questinedAnswer,recentlyAnsweredQuestionsItem2.getAAnswer());
-                    bundle.putString(DialogFullscreenFragment.questinedDesc,recentlyAnsweredQuestionsItem2.getQQuestion());
-                    bundle.putString(DialogFullscreenFragment.questinedTitle,recentlyAnsweredQuestionsItem2.getQQuestionTitle());
+                    bundle.putString(AnswerFragment.questinedBy, LoginActivity.USER.getUMName());
+                    bundle.putString(AnswerFragment.questinedOn, Constants.Date(recentlyAnsweredQuestionsItem2.getQAddedDateTime()));
+                    bundle.putString(AnswerFragment.questinedAnswer, recentlyAnsweredQuestionsItem2.getAAnswer());
+                    bundle.putString(AnswerFragment.questinedDesc, recentlyAnsweredQuestionsItem2.getQQuestion());
+                    bundle.putString(AnswerFragment.questinedTitle, recentlyAnsweredQuestionsItem2.getQQuestionTitle());
+                    bundle.putString(AnswerFragment.AnswerID, recentlyAnsweredQuestionsItem2.getAID());
 
                     showDialogFullscreen(bundle,getFragmentManager());
                 }
@@ -89,6 +89,15 @@ public class RecentAnswerFragment extends Fragment {
         adapter = new RecentlyAnswerdAdapter(getActivity(), recentlyAnsweredQuestionsItems, itemClickListener);
         rvLearningSub.setAdapter(adapter);
         getRecentQuestions();
+
+        listener = new EditNameDialogListener() {
+            @Override
+            public void onFinishEditDialog(boolean isRefresh) {
+                if (isRefresh) {
+                    getRecentQuestions();
+                }
+            }
+        };
     }
 
     private void getRecentQuestions() {
@@ -125,19 +134,26 @@ public class RecentAnswerFragment extends Fragment {
         });
     }
 
-    public static void showDialogFullscreen(Bundle args, FragmentManager fragmentManager ) {
-        DialogFullscreenFragment newFragment = new DialogFullscreenFragment();
+
+    public void showDialogFullscreen(Bundle args, FragmentManager fragmentManager) {
+        AnswerFragment newFragment = new AnswerFragment(listener);
         newFragment.setRequestCode(9003);
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         newFragment.setArguments(args);
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.add(android.R.id.content, newFragment).addToBackStack(null).commit();
-        newFragment.setOnCallbackResult(new DialogFullscreenFragment.CallbackResult() {
+        newFragment.setOnCallbackResult(new AnswerFragment.CallbackResult() {
             @Override
             public void sendResult(int requestCode, Object obj) {
                 if (requestCode == 9003) {
+
                 }
             }
         });
     }
+
+    public interface EditNameDialogListener {
+        void onFinishEditDialog(boolean inputText);
+    }
+
 }

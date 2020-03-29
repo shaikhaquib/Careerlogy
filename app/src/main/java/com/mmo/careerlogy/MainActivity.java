@@ -28,6 +28,7 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.navigation.NavigationView;
 import com.mmo.careerlogy.Acivity.AskQuestionEntrepreneur;
 import com.mmo.careerlogy.Acivity.AskQuestionStudent;
+import com.mmo.careerlogy.Acivity.ProfileActivity;
 import com.mmo.careerlogy.Acivity.QuestionHistory;
 import com.mmo.careerlogy.Adapter.ViewPagerAdapter;
 import com.mmo.careerlogy.Extra.Constants;
@@ -298,6 +299,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("title","History");
                 intent.putExtra("type","0");
                 startActivity(intent);
+                break;
+            case R.id.profile:
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                break;
 
         }
         return true;

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.mmo.careerlogy.Extra.Constants;
 import com.mmo.careerlogy.Extra.ItemClickListener;
 import com.mmo.careerlogy.LoginActivity;
@@ -40,6 +41,20 @@ public class QuestionsHistAdapter extends RecyclerView.Adapter<QuestionsHistAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         QuestionsHistoryItem questionsItem = questions.get(position);
         holder.bind(questionsItem);
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+/*
+                new MaterialAlertDialogBuilder(activity)
+                        .setTitle("Alert")
+                        .setMessage("Do you want to Delete selected question")
+                        .setPositiveButton("Ok",null)
+                        .show();
+*/
+
+                return true;
+            }
+        });
     }
 
     @Override

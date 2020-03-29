@@ -4,124 +4,230 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:fitsSystemWindows="true"
-    android:layout_marginTop="24dp"
+    android:layout_marginTop="30dp"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/bt_close"
-                android:layout_width="?attr/actionBarSize"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:tint="@android:color/white"
-                android:src="@drawable/ic_close"
-                />
-
-            <TextView
-                android:id="@+id/questinedBy"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:fontFamily="@font/roboto_regular"
-                android:maxLines="1"
-                android:layout_gravity="center"
-                android:text="Mohammad Shahbaz"
-                android:textColor="@android:color/white"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/questinedOn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center"
-                android:layout_weight="3"
-                android:fontFamily="@font/roboto_regular"
-                android:gravity="center"
-                android:text="18-03-2020"
-                android:textColor="@android:color/white"
-                android:textSize="14sp" />
-
-
-        </LinearLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nested_scroll_view"
+    <LinearLayout
+        android:id="@+id/AnswerViewMode"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:scrollingCache="true">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:orientation="vertical">
+            android:layout_height="?attr/actionBarSize">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                >
+                android:paddingRight="4dp"
+                android:orientation="horizontal">
 
+                <ImageButton
+                    android:id="@+id/bt_close"
+                    android:layout_width="?attr/actionBarSize"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="@android:color/white"
+                    android:src="@drawable/ic_close" />
+
+                <TextView
+                    android:id="@+id/questinedBy"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/roboto_regular"
+                    android:maxLines="1"
+                    android:layout_gravity="center"
+                    android:text="Mohammad Shahbaz"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/questinedOn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center"
+                    android:text="18-03-2020"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/edit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/ic_edit"
+                    android:textSize="14sp" />
 
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/questinedTitle"
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:scrollingCache="true">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
-                android:layout_marginTop="8dp"
-                android:text="How to concentrate while teacher is teaching ?"
-                android:textColor="@color/grey_60"
-                android:textSize="18dp" />
-
-            <TextView
-                android:id="@+id/questinedDesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:autoLink="web"
-                android:textColorLink="@color/colorPrimary"
-                android:fontFamily="@font/roboto_regular"
-                android:text="How to concentrate while teacher is teaching ?How to concentrate while teacher is teaching ?How to concentrate while teacher is teaching ?How to concentrate while teacher is teaching ?"
-                android:textColor="@color/grey_40"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24dp"
                 android:layout_margin="16dp"
-                android:fontFamily="@font/roboto_bold"
-                android:textColor="@android:color/black"
-                android:text="Answer"/>
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/questinedAnswer"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/questinedTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:layout_marginTop="8dp"
+                    android:text="How to concentrate while teacher is teaching ?"
+                    android:textColor="@color/grey_60"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/questinedDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:autoLink="web"
+                    android:textColorLink="@color/colorPrimary"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="How to concentrate while teacher is teaching ?How to concentrate while teacher is teaching ?How to concentrate while teacher is teaching ?How to concentrate while teacher is teaching ?"
+                    android:textColor="@color/grey_40"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:layout_margin="16dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@android:color/black"
+                    android:text="Answer" />
+
+                <TextView
+                    android:id="@+id/questinedAnswer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="How to concentrate while teacher is teaching ?"
+                    android:textColor="@color/grey_80"
+                    android:autoLink="web"
+                    android:textColorLink="@color/colorPrimary"
+                    android:textSize="18dp" />
+
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/AnswerEditMode"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="4dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/bt_edtCancel"
+                    android:layout_width="?attr/actionBarSize"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="@android:color/white"
+                    android:src="@drawable/ic_close" />
+
+
+                <ImageButton
+                    android:id="@+id/bt_Save"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="end|center_vertical"
+                    android:background="@drawable/circle_fill"
+                    android:layout_marginRight="4dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_check"
+                    android:tint="@color/colorPrimary" />
+
+
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:scrollingCache="true">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
-                android:text="How to concentrate while teacher is teaching ?"
-                android:textColor="@color/grey_80"
-                android:autoLink="web"
-                android:textColorLink="@color/colorPrimary"
-                android:textSize="18dp" />
+                android:layout_margin="16dp"
+                android:orientation="vertical">
 
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:layout_margin="16dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@android:color/black"
+                    android:text="Edit Answer" />
 
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/edtAnswer"
+                    android:background="@drawable/borderdark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:lines="5"
+                    android:focusedByDefault="true"
+                    android:padding="4dp"
+                    android:gravity="start"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="How to concentrate while teacher is teaching ?"
+                    android:textColor="@color/grey_80"
+                    android:textColorLink="@color/colorPrimary"
+                    android:textSize="18dp" />
 
-    </androidx.core.widget.NestedScrollView>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Acivity.ProfileActivity"
+            android:theme="@style/AppNoActionBar"></activity>
+        <activity
             android:name=".Acivity.AnswertheQuestionActivity"
             android:theme="@style/AppNoActionBar" />
         <activity
@@ -22,7 +25,7 @@
             android:theme="@style/AppNoActionBar" />
         <activity
             android:name=".Acivity.YoutubeLinkUpload"
-            android:theme="@style/AppNoActionBar"></activity>
+            android:theme="@style/AppNoActionBar" />
         <activity
             android:name=".Acivity.AdminQuestionList"
             android:theme="@style/AppNoActionBar" />

@@ -1,5 +1,6 @@
 package com.mmo.careerlogy;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import com.mmo.careerlogy.Acivity.AdminQuestionList;
 import com.mmo.careerlogy.Acivity.UploadFile;
 import com.mmo.careerlogy.Acivity.YoutubeLinkUpload;
 import com.mmo.careerlogy.Extra.Constants;
+import com.mmo.careerlogy.Extra.PopSplash;
 import com.mmo.careerlogy.Extra.SessionManager;
 import com.mmo.careerlogy.Network.UserDatabase;
 
@@ -26,6 +28,8 @@ public class AdminDash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dash);
         userDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, Constants.DATABASE_NAME).build();
+
+        new PopSplash(AdminDash.this).show();
 
         findViewById(R.id.adminStudent).setOnClickListener(new View.OnClickListener() {
             @Override

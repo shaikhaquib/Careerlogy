@@ -87,6 +87,7 @@ public class AnswertheQuestionActivity extends AppCompatActivity {
         addYouTubeLink.enqueue(new Callback<UploadTestimonialResponse>() {
             @Override
             public void onResponse(Call<UploadTestimonialResponse> call, Response<UploadTestimonialResponse> response) {
+                progress.dismiss();
 
                 if (response.isSuccessful()) {
                     if (response.body().isError()) {

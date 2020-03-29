@@ -135,6 +135,14 @@ public interface Api {
             @Field("QID") String QID,
             @Field("userId") String userId
     );
+
+    @FormUrlEncoded
+    @POST("EditAnswer")
+    Call<UploadTestimonialResponse> EditAnswer(
+            @Field("Answer") String Answer,
+            @Field("userId") String userId,
+            @Field("AID") String AID
+    );
     @FormUrlEncoded
             @POST("GetMainGraph")
                     Call<GraphsResponse> GetMainGraph(
