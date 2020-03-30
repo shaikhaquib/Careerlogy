@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeToRefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -20,21 +22,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TOTAL QUESTION RAISED (M/F) GRAPH"
-            android:gravity="center"
-            />
-
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/barChart"
-        android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_height="450dp"
-        android:layout_marginBottom="20dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CATEGORY WISE GRAPH"
+            android:text="CATEGORY WISE TOTAL QUESTION RAISED (M/F)"
             android:gravity="center"
             />
 
@@ -45,10 +33,58 @@
             android:layout_height="450dp"
             android:layout_marginBottom="20dp" />
 
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Choose Category"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@android:color/tertiary_text_light"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:gravity="center_horizontal" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dropDownCategory"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choose"
+                android:maxLines="1"
+                android:backgroundTint="@android:color/white"
+                android:textColor="@android:color/tab_indicator_text"
+                app:icon="@drawable/ic_arrow_drop_down_black_24dp"
+                app:iconTint="@color/grey_80"
+                app:iconGravity="end"
+                android:textSize="12dp"
+                app:strokeColor="@android:color/tertiary_text_light"
+                app:strokeWidth="2dp" />
+
+        </LinearLayout>
+
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="450dp"
+            android:layout_marginBottom="20dp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="70dp"/>
 
+
     </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-</FrameLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

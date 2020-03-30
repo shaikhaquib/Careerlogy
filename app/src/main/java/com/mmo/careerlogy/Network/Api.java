@@ -144,9 +144,9 @@ public interface Api {
             @Field("AID") String AID
     );
     @FormUrlEncoded
-            @POST("GetMainGraph")
-                    Call<GraphsResponse> GetMainGraph(
-                    @Field("Type") String Type
+    @POST("GetMainGraph")
+    Call<GraphsResponse> GetMainGraph(
+            @Field("categoryId") String Type
     );
 
     @FormUrlEncoded
