@@ -107,9 +107,9 @@ public class RecentAnswerFragment extends Fragment {
         Activity activity = (AdminQuestionList) getActivity();
         String userType = "";
         if(activity.getIntent().getStringExtra("userType").equalsIgnoreCase("student")){
-            userType = "Student";
+            userType = "student";
         }else if(activity.getIntent().getStringExtra("userType").equalsIgnoreCase("entrepreneurship")){
-            userType = "Entrepreneur";
+            userType = "entrepreneurship";
         }
         Call<RecentResponse> call = RetrofitClient.getInstance().getApi().GetRecentlyAnsweredQuestions("0", userType);
         call.enqueue(new Callback<RecentResponse>() {
