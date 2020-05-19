@@ -377,7 +377,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         progress.setMessage("Downloading files...");
         progress.setCancelable(false);
         progress.show();
-        Call<DownloadlinksModel> downloadlinksModelCall = RetrofitClient.getInstance().getApi().DocumentURL("document");
+        Call<DownloadlinksModel> downloadlinksModelCall = RetrofitClient.getInstance().getApi().DocumentURL("Document");
         downloadlinksModelCall.enqueue(new Callback<DownloadlinksModel>() {
             @Override
             public void onResponse(Call<DownloadlinksModel> call, Response<DownloadlinksModel> response) {
