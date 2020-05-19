@@ -117,7 +117,7 @@ public class AskQuestionStudent extends AppCompatActivity {
                         dropDownSubCategory.setText(finalCategoryArray[which]);
                         if (dropDownCategory.getError()!=null)
                             dropDownCategory.setError(null);
-                        pscId =  problemSubCategories.get(0).getPSCID();
+                        pscId = problemSubCategories.get(which).getPSCID();
 
                     }
                 });
