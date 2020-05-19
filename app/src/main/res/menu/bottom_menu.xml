@@ -3,7 +3,7 @@
     <item
         android:id="@+id/studentFragment"
         android:icon="@drawable/ic_student"
-        android:title="Student" />
+        android:title="Learner" />
     <item
         android:id="@+id/entrepreneurFragment"
         android:icon="@drawable/ic_business"

@@ -165,10 +165,10 @@ public interface Api {
             @Part("document") MultipartBody.Part file
     );
 
-    @Multipart
+    @FormUrlEncoded
     @POST("DocumentURL")
     Call<DownloadlinksModel> DocumentURL(
-            @Part("docType") String docType
+            @Field("docType") String docType
     );
 
 

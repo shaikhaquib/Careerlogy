@@ -381,42 +381,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         downloadlinksModelCall.enqueue(new Callback<DownloadlinksModel>() {
             @Override
             public void onResponse(Call<DownloadlinksModel> call, Response<DownloadlinksModel> response) {
+                progress.dismiss();
                 if (response.isSuccessful()) {
-                    File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-                    File pdfFile = new File(folder, "careerlogy_documets");
-                    if (FileDownloader.downloadFile(response.body().getPolicyDocumentUrl(), pdfFile)) {
-                        progress.dismiss();
-                        new MaterialAlertDialogBuilder(MainActivity.this)
-                                .setTitle("Download Complete")
-                                .setMessage("File has been downloaded successfully in download folder do you want to preview.")
-                                .setPositiveButton("Preview", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        File d = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);  // -> filename = maven.pdf
-                                        File pdfFile = new File(d, "careerlogy_documets");
-
-
-                                        Uri path = FileProvider.getUriForFile(MainActivity.this, BuildConfig.APPLICATION_ID + ".fileprovider", pdfFile);
-
-                                        Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
-                                        pdfIntent.setDataAndType(path, "application/pdf");
-                                        pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        pdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-                                        try {
-                                            startActivity(pdfIntent);
-                                        } catch (ActivityNotFoundException e) {
-                                            Toast.makeText(MainActivity.this, "No Application available to view PDF", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                })
-                                .setNeutralButton("Later", null)
-                                .show();
-
-                    } else {
-                        progress.dismiss();
-                        Constants.Alert(MainActivity.this, "Some thing went wrong while downloading file.\n Please Check your Internet connection or contact admin");
-                    }
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(response.body().getPolicyDocumentUrl()));
+                    startActivity(browserIntent);
                 }
             }
 
