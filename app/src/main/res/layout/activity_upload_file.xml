@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
-    tools:context=".Acivity.EntrepreneurSubCategory">
+    tools:context="com.DIS.careerlogy.Acivity.UploadFile">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -38,7 +38,7 @@
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add Testimonial Video "
+                    android:text="Upload Document"
                     android:textSize="32dp"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"

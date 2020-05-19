@@ -7,27 +7,27 @@
 
     <fragment
         android:id="@+id/studentFragment"
-        android:name="com.mmo.careerlogy.Fragment.Student"
+        android:name="com.DIS.careerlogy.Fragment.Student"
         android:label="fragment_student"
         tools:layout="@layout/fragment_student" />
     <fragment
         android:id="@+id/entrepreneurFragment"
-        android:name="com.mmo.careerlogy.Fragment.Business"
+        android:name="com.DIS.careerlogy.Fragment.Business"
         android:label="fragment_buisness"
         tools:layout="@layout/fragment_buisness" />
     <fragment
         android:id="@+id/graphFragment"
-        android:name="com.mmo.careerlogy.Fragment.Graph"
+        android:name="com.DIS.careerlogy.Fragment.Graph"
         android:label="fragment_graph"
         tools:layout="@layout/fragment_graph" />
     <fragment
         android:id="@+id/articleFragment"
-        android:name="com.mmo.careerlogy.Fragment.Article"
+        android:name="com.DIS.careerlogy.Fragment.Article"
         android:label="fragment_article"
         tools:layout="@layout/fragment_article" />
     <fragment
         android:id="@+id/videoFragment"
-        android:name="com.mmo.careerlogy.Fragment.Testimonial"
+        android:name="com.DIS.careerlogy.Fragment.Testimonial"
         android:label="fragment_testimonial"
         tools:layout="@layout/fragment_testimonial" />
 </navigation>

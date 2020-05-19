@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AdminDash">
+    tools:context="com.DIS.careerlogy.AdminDash">
 
     <LinearLayout
         android:layout_width="match_parent"

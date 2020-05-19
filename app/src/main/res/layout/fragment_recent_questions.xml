@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.Admin.RecentQuestionsFragment">
+    tools:context="com.DIS.careerlogy.Fragment.Admin.RecentQuestionsFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
@@ -14,4 +14,17 @@
         android:clipToPadding="false"
         android:padding="@dimen/spacing_mlarge" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/rvError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:src="@drawable/ic_data_not_found_artboard_1"
+        android:padding="@dimen/spacing_mlarge"
+        android:adjustViewBounds="true"
+        android:paddingBottom="150dp"
+        android:visibility="gone" />
+
+
+</RelativeLayout>
