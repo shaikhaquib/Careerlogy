@@ -2,12 +2,9 @@ package com.DIS.careerlogy.Extra;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 
-import com.DIS.careerlogy.Acivity.UploadFile;
-import com.DIS.careerlogy.LoginActivity;
 import com.DIS.careerlogy.Network.RetrofitClient;
 
 import org.json.JSONException;

@@ -1,4 +1,4 @@
-package com.DIS.careerlogy.Acivity;
+package com.DIS.careerlogy.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

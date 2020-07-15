@@ -13,14 +13,24 @@
         android:icon="@drawable/ic_download"
         android:title="Download" />
     <item
+        android:id="@+id/quote"
+        android:icon="@drawable/ic_quote"
+        android:title="Quote" />
+    <item
         android:id="@+id/setting"
         android:icon="@drawable/ic_setting"
         android:title="Setting"
         android:visible="false" />
+
     <item
         android:id="@+id/about"
         android:icon="@drawable/ic_about"
         android:title="Disclamer" />
+
+    <item
+        android:id="@+id/feedback"
+        android:icon="@drawable/ic_outline_feedback_24"
+        android:title="Feedback" />
     <item
         android:id="@+id/logout"
         android:icon="@drawable/ic_logout"

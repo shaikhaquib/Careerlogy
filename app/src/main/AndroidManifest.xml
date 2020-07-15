@@ -14,47 +14,59 @@
         android:roundIcon="@drawable/ic_careerlogy_new_logo_01"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Disclamer"></activity>
         <activity
-            android:name=".Acivity.ProfileActivity"
+            android:name=".Activity.EntrepreneurshipCategory"
             android:theme="@style/AppNoActionBar" />
         <activity
-            android:name=".Acivity.AnswertheQuestionActivity"
+            android:name=".Activity.LearnerCategory"
             android:theme="@style/AppNoActionBar" />
         <activity
-            android:name=".Acivity.UploadFile"
+            android:name=".Activity.UploadQuaotes"
             android:theme="@style/AppNoActionBar" />
         <activity
-            android:name=".Acivity.YoutubeLinkUpload"
+            android:name=".Activity.QuotesList"
+            android:theme="@style/AppNoActionBar" />
+        <activity android:name=".Disclamer" />
+        <activity
+            android:name=".Activity.ProfileActivity"
             android:theme="@style/AppNoActionBar" />
         <activity
-            android:name=".Acivity.AdminQuestionList"
+            android:name=".Activity.AnswertheQuestionActivity"
+            android:theme="@style/AppNoActionBar" />
+        <activity
+            android:name=".Activity.UploadFile"
+            android:theme="@style/AppNoActionBar" />
+        <activity
+            android:name=".Activity.YoutubeLinkUpload"
+            android:theme="@style/AppNoActionBar" />
+        <activity
+            android:name=".Activity.AdminQuestionList"
             android:theme="@style/AppNoActionBar" />
         <activity
             android:name=".AdminDash"
             android:theme="@style/AppNoActionBar" />
         <activity
-            android:name=".Acivity.QuestionHistory"
+            android:name=".Activity.QuestionHistory"
             android:theme="@style/AppNoActionBar" />
         <activity
-            android:name=".Acivity.QuestionList"
+            android:name=".Activity.QuestionList"
             android:theme="@style/AppNoActionBar" />
         <activity
-            android:name=".Acivity.AskQuestionEntrepreneur"
+            android:name=".Activity.AskQuestionEntrepreneur"
             android:theme="@style/AppNoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".Acivity.AskQuestionStudent"
+            android:name=".Activity.AskQuestionStudent"
             android:theme="@style/AppNoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".Acivity.UserVerification"
+            android:name=".Activity.UserVerification"
             android:theme="@style/AppNoActionBar" />
         <activity
-            android:name=".Acivity.EntrepreneurSubCategory"
+            android:name=".Activity.EntrepreneurSubCategory"
             android:theme="@style/AppNoActionBar" />
         <activity
-            android:name=".Acivity.StudentSubCategory"
+            android:name=".Activity.StudentSubCategory"
             android:theme="@style/AppNoActionBar" />
         <activity
             android:name=".Registration"
@@ -62,6 +74,10 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".MainActivity"
+            android:theme="@style/AppNoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Activity.FeedBack"
             android:theme="@style/AppNoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -84,7 +100,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/external_files" />
         </provider>
-
     </application>
 
 </manifest>

@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.DIS.careerlogy.Acivity.EntrepreneurSubCategory;
+import com.DIS.careerlogy.Activity.EntrepreneurSubCategory;
 import com.DIS.careerlogy.Extra.ItemClickListener;
 import com.DIS.careerlogy.Models.ProblemSubCategoryItem;
 import com.DIS.careerlogy.R;

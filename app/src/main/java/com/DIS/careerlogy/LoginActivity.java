@@ -13,7 +13,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
-import com.DIS.careerlogy.Acivity.UserVerification;
+import com.DIS.careerlogy.Activity.UserVerification;
 import com.DIS.careerlogy.Extra.Constants;
 import com.DIS.careerlogy.Extra.Progress;
 import com.DIS.careerlogy.Extra.SessionManager;
@@ -23,7 +23,6 @@ import com.DIS.careerlogy.Network.RetrofitClient;
 import com.DIS.careerlogy.Network.UserDatabase;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
-import com.DIS.careerlogy.R;
 
 import java.util.List;
 import java.util.Objects;

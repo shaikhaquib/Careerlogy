@@ -8,14 +8,16 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
-import com.DIS.careerlogy.Acivity.AdminQuestionList;
-import com.DIS.careerlogy.Acivity.UploadFile;
-import com.DIS.careerlogy.Acivity.YoutubeLinkUpload;
+import com.DIS.careerlogy.Activity.AdminQuestionList;
+import com.DIS.careerlogy.Activity.EntrepreneurshipCategory;
+import com.DIS.careerlogy.Activity.LearnerCategory;
+import com.DIS.careerlogy.Activity.UploadFile;
+import com.DIS.careerlogy.Activity.UploadQuaotes;
+import com.DIS.careerlogy.Activity.YoutubeLinkUpload;
 import com.DIS.careerlogy.Extra.Constants;
 import com.DIS.careerlogy.Extra.PopSplash;
 import com.DIS.careerlogy.Extra.SessionManager;
 import com.DIS.careerlogy.Network.UserDatabase;
-import com.DIS.careerlogy.R;
 
 public class AdminDash extends AppCompatActivity {
 
@@ -27,7 +29,7 @@ public class AdminDash extends AppCompatActivity {
         setContentView(R.layout.activity_admin_dash);
         userDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, Constants.DATABASE_NAME).build();
 
-        new PopSplash(AdminDash.this).show();
+        //  new PopSplash(AdminDash.this).show();
 
         findViewById(R.id.adminStudent).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +53,24 @@ public class AdminDash extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), YoutubeLinkUpload.class));
+            }
+        });
+        findViewById(R.id.adminUploadQuotes).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), UploadQuaotes.class));
+            }
+        });
+        findViewById(R.id.studentCategory).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), LearnerCategory.class));
+            }
+        });
+        findViewById(R.id.entrepreneurCategory).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), EntrepreneurshipCategory.class));
             }
         });
         findViewById(R.id.logout).setOnClickListener(new View.OnClickListener() {

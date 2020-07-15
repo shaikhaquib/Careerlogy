@@ -1,13 +1,16 @@
-package com.DIS.careerlogy.Acivity;
+package com.DIS.careerlogy.Activity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.DIS.careerlogy.Network.RetrofitClient;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.DIS.careerlogy.Extra.Constants;
@@ -46,6 +49,28 @@ public class YoutubeLinkUpload extends AppCompatActivity {
                 }
             }
         });
+
+        initToolbar();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        } else {
+            Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    private void initToolbar() {
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     private void uploadVideo() {

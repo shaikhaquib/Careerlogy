@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.DIS.careerlogy.Network.RetrofitClient;
-import com.DIS.careerlogy.Acivity.AdminQuestionList;
-import com.DIS.careerlogy.Acivity.AnswertheQuestionActivity;
+import com.DIS.careerlogy.Activity.AdminQuestionList;
+import com.DIS.careerlogy.Activity.AnswertheQuestionActivity;
 import com.DIS.careerlogy.Adapter.AskedQuestionListAdapter;
 import com.DIS.careerlogy.Extra.ItemClickListener;
 import com.DIS.careerlogy.Extra.MyItemDecoration;

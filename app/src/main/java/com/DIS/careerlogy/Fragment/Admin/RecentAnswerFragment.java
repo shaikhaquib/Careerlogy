@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.DIS.careerlogy.Fragment.AnswerFragment;
 import com.DIS.careerlogy.Network.RetrofitClient;
-import com.DIS.careerlogy.Acivity.AdminQuestionList;
+import com.DIS.careerlogy.Activity.AdminQuestionList;
 import com.DIS.careerlogy.Adapter.RecentlyAnswerdAdapter;
 import com.DIS.careerlogy.Extra.Constants;
 import com.DIS.careerlogy.Extra.ItemClickListener;

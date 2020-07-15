@@ -1,4 +1,4 @@
-package com.DIS.careerlogy.Acivity;
+package com.DIS.careerlogy.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.DIS.careerlogy.Activity.LearnerCategory;
 import com.DIS.careerlogy.Extra.ItemClickListener;
 import com.DIS.careerlogy.Models.ProblemCategoryItem;
 import com.DIS.careerlogy.R;
@@ -24,18 +25,27 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
     String name [] = {"Learning in Class Room","Homework" ,"Exam Date Announcement" , "Day of Exam" , "Reporting Exam to Parent" ,"Day of Result" , "P.T.A Meeting"};
     private List<ProblemCategoryItem> problemCategories = new ArrayList<>();
     ItemClickListener clickListener;
+    ItemClickListener longClicklistener;
 
     Activity activity;
+
     public StudentAdapter(FragmentActivity activity, List<ProblemCategoryItem> problemCategories, ItemClickListener itemClickListener) {
         this.activity = activity;
         this.problemCategories = problemCategories;
         this.clickListener = itemClickListener;
     }
 
+    public StudentAdapter(LearnerCategory activity, List<ProblemCategoryItem> problemCategories, ItemClickListener itemClickListener, ItemClickListener longClicklistener) {
+        this.activity = activity;
+        this.problemCategories = problemCategories;
+        this.clickListener = itemClickListener;
+        this.longClicklistener = longClicklistener;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(activity).inflate(R.layout.rv_item,parent,false),clickListener);
+        return new ViewHolder(LayoutInflater.from(activity).inflate(R.layout.rv_item, parent, false));
     }
 
     @Override
@@ -57,21 +67,29 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView text;
         ImageView icon;
-        ItemClickListener listener;
-        public ViewHolder(@NonNull View itemView, ItemClickListener clickListener) {
+
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            listener = clickListener;
             text = itemView.findViewById(R.id.text);
             icon = itemView.findViewById(R.id.icon);
 
             itemView.setOnClickListener(this);
 
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if (longClicklistener != null)
+                        longClicklistener.onItemClick(v, getAdapterPosition());
+                    return true;
+                }
+            });
+
         }
 
         @Override
         public void onClick(View view) {
-            listener.onItemClick(view,getAdapterPosition());
+            clickListener.onItemClick(view, getAdapterPosition());
         }
     }
 

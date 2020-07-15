@@ -1,4 +1,4 @@
-package com.DIS.careerlogy.Acivity;
+package com.DIS.careerlogy.Activity;
 
 import android.Manifest;
 import android.app.ProgressDialog;
@@ -9,9 +9,11 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +22,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.DIS.careerlogy.Extra.AndroidMultiPartEntity;
+import com.DIS.careerlogy.FileUtilKt;
 import com.DIS.careerlogy.Network.RetrofitClient;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.DIS.careerlogy.Extra.Constants;
@@ -40,7 +44,7 @@ public class UploadFile extends AppCompatActivity {
     MaterialCardView btnAttach;
     TextView filePath;
     Button btnSubmit;
-    Uri uri;
+    String uri;
 
 
     @Override
@@ -71,6 +75,28 @@ public class UploadFile extends AppCompatActivity {
                     new UploadFileToServer().execute(uri);
             }
         });
+
+        initToolbar();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        } else {
+            Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    private void initToolbar() {
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     private void requestPermission() {
@@ -129,9 +155,9 @@ public class UploadFile extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if (null != data) { // checking empty selection
-                uri = data.getData();
-                filePath.setText(String.valueOf(FileUtils.getFile(UploadFile.this, uri)));
-
+                Uri tturi = data.getData();
+                uri = FileUtilKt.getPath(UploadFile.this, tturi);
+                filePath.setText(uri);
             }
         }
     }
@@ -139,7 +165,7 @@ public class UploadFile extends AppCompatActivity {
     private void uploadFile(Uri fileUri) {
     }
 
-    private class UploadFileToServer extends AsyncTask<Uri, Integer, String> {
+    private class UploadFileToServer extends AsyncTask<String, Integer, String> {
 
         ProgressDialog progress = new ProgressDialog(UploadFile.this);
 
@@ -151,7 +177,7 @@ public class UploadFile extends AppCompatActivity {
         }
 
         @Override
-        protected String doInBackground(Uri... uris) {
+        protected String doInBackground(String... uris) {
             //Log.d("file path", filePath);
             String responseString = null;
             try {
@@ -164,7 +190,7 @@ public class UploadFile extends AppCompatActivity {
 
                 multipart.addFormField("userId", LoginActivity.USER.getUMID());
                 multipart.addFormField("docType", "Document");
-                multipart.addFilePart("document", FileUtils.getFile(UploadFile.this, uris[0]));
+                multipart.addFilePart("document", FileUtils.getFile(UploadFile.this, Uri.parse(uris[0])));
 
                 responseString = multipart.finish(); // response from server.
 

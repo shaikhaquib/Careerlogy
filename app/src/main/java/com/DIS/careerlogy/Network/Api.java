@@ -3,6 +3,7 @@ package com.DIS.careerlogy.Network;
 
 import com.DIS.careerlogy.Models.AskQuestionByUserResponse;
 import com.DIS.careerlogy.Models.AskQuestionResponse;
+import com.DIS.careerlogy.Models.CategoryOperationsEditResponse;
 import com.DIS.careerlogy.Models.CitiesModel;
 import com.DIS.careerlogy.Models.DownloadlinksModel;
 import com.DIS.careerlogy.Models.GraphsResponse;
@@ -12,6 +13,7 @@ import com.DIS.careerlogy.Models.ModelUserCategory;
 import com.DIS.careerlogy.Models.OTPResponse;
 import com.DIS.careerlogy.Models.ProblemCategory;
 import com.DIS.careerlogy.Models.ProblemSubCategoryResponse;
+import com.DIS.careerlogy.Models.QoutesResponse;
 import com.DIS.careerlogy.Models.QuestionListResponse;
 import com.DIS.careerlogy.Models.RecentResponse;
 import com.DIS.careerlogy.Models.RegisterResponse;
@@ -157,18 +159,26 @@ public interface Api {
             @Field("userType") String userType
     );
 
-    @Multipart
-    @POST("UploadDocument")
-    Call<UploadTestimonialResponse> UploadDocument(
-            @Part("userId") RequestBody userId,
-            @Part("docType") RequestBody docType,
-            @Part("document") MultipartBody.Part file
-    );
-
     @FormUrlEncoded
     @POST("DocumentURL")
     Call<DownloadlinksModel> DocumentURL(
             @Field("docType") String docType
+    );
+
+    @FormUrlEncoded
+    @POST("Qoutes")
+    Call<QoutesResponse> Qouteslist(
+            @Field("option") String docType
+    );
+
+    @FormUrlEncoded
+    @POST("CategoryOperations")
+    Call<CategoryOperationsEditResponse> CategoryOperationsEdit(
+            @Field("option") String option,
+            @Field("cattype") String cattype,
+            @Field("catname") String catname,
+            @Field("pcid") String pcid,
+            @Field("userid") String userid
     );
 
 

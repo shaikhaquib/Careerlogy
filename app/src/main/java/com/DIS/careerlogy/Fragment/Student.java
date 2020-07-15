@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.DIS.careerlogy.MainActivity;
 import com.DIS.careerlogy.Network.RetrofitClient;
-import com.DIS.careerlogy.Acivity.AskQuestionStudent;
-import com.DIS.careerlogy.Acivity.StudentSubCategory;
+import com.DIS.careerlogy.Activity.AskQuestionStudent;
+import com.DIS.careerlogy.Activity.StudentSubCategory;
 import com.DIS.careerlogy.Adapter.StudentAdapter;
 import com.DIS.careerlogy.Extra.ItemClickListener;
 import com.DIS.careerlogy.Extra.MyItemDecoration;

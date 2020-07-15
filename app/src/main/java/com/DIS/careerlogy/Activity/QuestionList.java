@@ -1,4 +1,4 @@
-package com.DIS.careerlogy.Acivity;
+package com.DIS.careerlogy.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,44 +12,53 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.DIS.careerlogy.Adapter.LearningSubAdapter;
+import com.DIS.careerlogy.Fragment.AnswerFragment;
 import com.DIS.careerlogy.Network.RetrofitClient;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.DIS.careerlogy.Adapter.QuestionsSubAdapter;
+import com.DIS.careerlogy.Extra.Constants;
 import com.DIS.careerlogy.Extra.ItemClickListener;
 import com.DIS.careerlogy.Extra.MyItemDecoration;
 import com.DIS.careerlogy.Extra.Progress;
-import com.DIS.careerlogy.Models.ProblemSubCategoryItem;
-import com.DIS.careerlogy.Models.ProblemSubCategoryResponse;
+import com.DIS.careerlogy.LoginActivity;
+import com.DIS.careerlogy.Models.QuestionListResponse;
+import com.DIS.careerlogy.Models.QuestionsOfProblemSubCategoryItem;
 import com.DIS.careerlogy.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class StudentSubCategory extends AppCompatActivity {
-    
+import static com.DIS.careerlogy.Activity.QuestionHistory.showDialogFullscreen;
+
+public class QuestionList extends AppCompatActivity {
+
     RecyclerView rvLearningSub;
-    RecyclerView.Adapter learningSubAdapter;
-    private List<ProblemSubCategoryItem> problemSubCategories = new ArrayList<>();
+    RecyclerView.Adapter entrepreneursSubAdapter;
+    List<QuestionsOfProblemSubCategoryItem> questions = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_subcategory);
+        setContentView(R.layout.activity_question_list);
+
+        initoolBar();
+        init();
+
         findViewById(R.id.floatingActionButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),AskQuestionStudent.class));
+                if (getIntent().getStringExtra("type").equals("0"))
+                    startActivity(new Intent(getApplicationContext(), AskQuestionStudent.class));
+                else
+                    startActivity(new Intent(getApplicationContext(), AskQuestionEntrepreneur.class));
             }
         });
-        initoolBar();
-        init();
-        
+
     }
 
     private void initoolBar() {
@@ -57,7 +66,6 @@ public class StudentSubCategory extends AppCompatActivity {
         toolbar.setNavigationIcon(R.drawable.ic_back);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String s = Objects.requireNonNull(getIntent().getStringExtra("title")).trim();
 
         final CollapsingToolbarLayout collapsingToolbarLayout =  findViewById(R.id.toolbar_layout );
         AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
@@ -71,7 +79,7 @@ public class StudentSubCategory extends AppCompatActivity {
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbarLayout.setTitle(s);
+                    collapsingToolbarLayout.setTitle(getIntent().getStringExtra("title"));
                     isShow = true;
                 } else if(isShow) {
                     collapsingToolbarLayout.setTitle(" ");//careful there should a space between double quote otherwise it wont work
@@ -79,8 +87,9 @@ public class StudentSubCategory extends AppCompatActivity {
                 }
             }
         });
+
         TextView title= (TextView)findViewById(R.id.title);
-        title.setText(s);
+        title.setText(getIntent().getStringExtra("title").trim());
     }
 
     private void init() {
@@ -88,22 +97,32 @@ public class StudentSubCategory extends AppCompatActivity {
         ItemClickListener itemClickListener = new ItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                ProblemSubCategoryItem categoryItem = problemSubCategories.get(pos);
-                Intent intent = new Intent(getApplicationContext(), QuestionList.class);
-                intent.putExtra("probSubCategory",categoryItem.getPSCID());
-                intent.putExtra("title",categoryItem.getPSCName());
-                intent.putExtra("type", "0");
-                startActivity(intent);
+                QuestionsOfProblemSubCategoryItem categoryItem = questions.get(pos);
+                int id = v.getId();
+                if (id == R.id.viewAnswer)
+                {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(AnswerFragment.questinedBy, LoginActivity.USER.getUMName());
+                    bundle.putString(AnswerFragment.questinedOn, Constants.Date(categoryItem.getQAddedDateTime()));
+                    bundle.putString(AnswerFragment.questinedAnswer, categoryItem.getAAnswer());
+                    bundle.putString(AnswerFragment.questinedDesc, categoryItem.getQQuestion());
+                    bundle.putString(AnswerFragment.questinedTitle, categoryItem.getQQuestionTitle());
+
+                    showDialogFullscreen(bundle,getSupportFragmentManager());
+                }
+
+
             }
         };
 
-        rvLearningSub =findViewById(R.id.rvLearningSub);
+        rvLearningSub =findViewById(R.id.rvQuestionList);
         rvLearningSub.setHasFixedSize(true);
         rvLearningSub.setLayoutManager(new LinearLayoutManager(this));
         rvLearningSub.addItemDecoration(new MyItemDecoration());
-        learningSubAdapter = new LearningSubAdapter(this,problemSubCategories,itemClickListener);
-        rvLearningSub.setAdapter(learningSubAdapter);
-        getData();
+        entrepreneursSubAdapter = new QuestionsSubAdapter(this,questions, itemClickListener);
+        rvLearningSub.setAdapter(entrepreneursSubAdapter);
+            getCategoryProblem();
+
     }
 
     @Override
@@ -116,25 +135,32 @@ public class StudentSubCategory extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void getData(){
-        final Progress progress = new Progress(StudentSubCategory.this);
+    public void getCategoryProblem() {
+        final Progress progress = new Progress(QuestionList.this);
         progress.show();
-        Call<ProblemSubCategoryResponse> call = RetrofitClient.getInstance().getApi().problemSubCategory(getIntent().getStringExtra("problemCategoryId"));
-        call.enqueue(new Callback<ProblemSubCategoryResponse>() {
+        Call<QuestionListResponse> call = RetrofitClient.getInstance().getApi().QuestionListOfProbSubCategory(getIntent().getStringExtra("probSubCategory"),"0");
+        call.enqueue(new Callback<QuestionListResponse>() {
             @Override
-            public void onResponse(Call<ProblemSubCategoryResponse> call, Response<ProblemSubCategoryResponse> response) {
+            public void onResponse(Call<QuestionListResponse> call, Response<QuestionListResponse> response) {
                 progress.dismiss();
                 if (response.isSuccessful()) {
-                    problemSubCategories.addAll(response.body().getProblemSubCategory());
-                    learningSubAdapter.notifyDataSetChanged();
+                    questions.addAll(response.body().getQuestionsOfProblemSubCategory());
+                    entrepreneursSubAdapter.notifyDataSetChanged();
+
+                    if (questions.isEmpty()) {
+                        findViewById(R.id.rvError).setVisibility(View.VISIBLE);
+                    } else {
+                        findViewById(R.id.rvError).setVisibility(View.GONE);
+                    }
                 }
 
             }
 
             @Override
-            public void onFailure(Call<ProblemSubCategoryResponse> call, Throwable t) {
+            public void onFailure(Call<QuestionListResponse> call, Throwable t) {
                 progress.dismiss();
             }
         });
     }
 }
+

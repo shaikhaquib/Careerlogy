@@ -13,10 +13,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.DIS.careerlogy.Acivity.AskQuestionEntrepreneur;
+import com.DIS.careerlogy.Activity.AskQuestionEntrepreneur;
 import com.DIS.careerlogy.MainActivity;
 import com.DIS.careerlogy.Network.RetrofitClient;
-import com.DIS.careerlogy.Acivity.EntrepreneurSubCategory;
+import com.DIS.careerlogy.Activity.EntrepreneurSubCategory;
 import com.DIS.careerlogy.Adapter.EntrepreneursAdapter;
 import com.DIS.careerlogy.Extra.ItemClickListener;
 import com.DIS.careerlogy.Extra.MyItemDecoration;

@@ -1,14 +1,11 @@
 package com.DIS.careerlogy;
 
 import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,22 +13,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.FileProvider;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.room.Room;
 import androidx.viewpager.widget.ViewPager;
 
-import com.DIS.careerlogy.Acivity.ProfileActivity;
+import com.DIS.careerlogy.Activity.FeedBack;
+import com.DIS.careerlogy.Activity.ProfileActivity;
+import com.DIS.careerlogy.Activity.QuotesList;
 import com.DIS.careerlogy.Extra.EntrepreneursInstruction;
-import com.DIS.careerlogy.Extra.FileDownloader;
-import com.DIS.careerlogy.Extra.GetDownloadLink;
 import com.DIS.careerlogy.Extra.PopSplash;
 import com.DIS.careerlogy.Extra.StudentInstruction;
 import com.DIS.careerlogy.Models.DownloadlinksModel;
@@ -40,12 +35,11 @@ import com.DIS.careerlogy.Network.RetrofitClient;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.DIS.careerlogy.Acivity.AskQuestionEntrepreneur;
-import com.DIS.careerlogy.Acivity.AskQuestionStudent;
-import com.DIS.careerlogy.Acivity.QuestionHistory;
+import com.DIS.careerlogy.Activity.AskQuestionEntrepreneur;
+import com.DIS.careerlogy.Activity.AskQuestionStudent;
+import com.DIS.careerlogy.Activity.QuestionHistory;
 import com.DIS.careerlogy.Adapter.ViewPagerAdapter;
 import com.DIS.careerlogy.Extra.Constants;
 import com.DIS.careerlogy.Extra.SessionManager;
@@ -56,9 +50,6 @@ import com.DIS.careerlogy.Fragment.Graph;
 import com.DIS.careerlogy.Fragment.Student;
 import com.DIS.careerlogy.Fragment.Testimonial;
 import com.DIS.careerlogy.Network.UserDatabase;
-import com.DIS.careerlogy.R;
-
-import java.io.File;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -349,19 +340,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         return null;
                     }
                 }.execute();
-                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 break;
             case R.id.history:
                 Intent intent = new Intent(getApplicationContext(), QuestionHistory.class);
-                intent.putExtra("title","History");
-                intent.putExtra("type","0");
+                intent.putExtra("title", "History");
+                intent.putExtra("type", "0");
                 startActivity(intent);
+                break;
+            case R.id.quote:
+                startActivity(new Intent(getApplicationContext(), QuotesList.class));
                 break;
             case R.id.profile:
                 startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                 break;
             case R.id.download:
                 downloadFiles();
+                break;
+            case R.id.feedback:
+                startActivity(new Intent(getApplicationContext(), FeedBack.class));
                 break;
             case R.id.about:
                 startActivity(new Intent(getApplicationContext(), Disclamer.class));
