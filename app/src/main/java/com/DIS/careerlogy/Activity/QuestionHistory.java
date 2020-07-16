@@ -103,8 +103,11 @@ public class QuestionHistory extends AppCompatActivity {
                     bundle.putString(AnswerFragment.questinedAnswer, categoryItem.getAAnswer());
                     bundle.putString(AnswerFragment.questinedDesc, categoryItem.getQQuestion());
                     bundle.putString(AnswerFragment.questinedTitle, categoryItem.getQQuestionTitle());
+                    bundle.putString(AnswerFragment.isAnswered, categoryItem.getQAnswered());
+                    bundle.putString(AnswerFragment.needClarification, categoryItem.getQNeedClarification());
+                    bundle.putString(AnswerFragment.QuestionID, categoryItem.getQID());
 
-                    showDialogFullscreen(bundle,getSupportFragmentManager());
+                    showDialogFullscreen(bundle, getSupportFragmentManager());
                 }
 
             }

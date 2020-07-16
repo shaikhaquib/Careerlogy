@@ -16,6 +16,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
+import com.DIS.careerlogy.Models.ProbSubCatLstItem;
+import com.DIS.careerlogy.Models.CategoryOperationsEditResponse;
 import com.DIS.careerlogy.Network.RetrofitClient;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.DIS.careerlogy.Extra.Constants;
@@ -57,12 +59,18 @@ public class AnswerFragment extends DialogFragment {
     EditText edtAnswer;
     Bundle bundle;
     LinearLayout viewMode, editMode;
-    public static String questinedBy = "questinedBy" ;
-    public static String questinedOn = "questinedOn" ;
-    public static String questinedTitle = "questinedTitle" ;
-    public static String questinedDesc = "questinedDesc" ;
-    public static String questinedAnswer = "questinedAnswer" ;
+    public static String questinedBy = "questinedBy";
+    public static String questinedOn = "questinedOn";
+    public static String questinedTitle = "questinedTitle";
+    public static String questinedDesc = "questinedDesc";
+    public static String questinedAnswer = "questinedAnswer";
+    public static String isAnswered = "answered";
+    public static String needClarification = "needclarification";
     public static String AnswerID = "AID";
+    public static String QuestionID = "QID";
+
+    private String answered;
+    private String needclarification;
 
 
     @Override
@@ -71,7 +79,7 @@ public class AnswerFragment extends DialogFragment {
         root_view = inflater.inflate(R.layout.dialog_answer, container, false);
         bundle = getArguments();
 
-        Name     = root_view.findViewById(R.id.questinedBy);
+        Name = root_view.findViewById(R.id.questinedBy);
         Date     = root_view.findViewById(R.id.questinedOn);
         title    = root_view.findViewById(R.id.questinedTitle);
         question = root_view.findViewById(R.id.questinedDesc);
@@ -124,7 +132,53 @@ public class AnswerFragment extends DialogFragment {
         answer.setText(bundle.getString(questinedAnswer));
         edtAnswer.setText(bundle.getString(questinedAnswer));
 
+        if (bundle.containsKey(isAnswered)) {
+            answered = bundle.getString(isAnswered);
+            needclarification = bundle.getString(needClarification);
+
+            if (answer.equals("1") && needclarification.equals("1")) {
+                root_view.findViewById(R.id.need_Clearification).setVisibility(View.VISIBLE);
+                root_view.findViewById(R.id.need_Clearification).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setNeedClearification(bundle.getString(QuestionID), root_view);
+                    }
+                });
+            } else if (answer.equals("0") && needclarification.equals("1")) {
+                root_view.findViewById(R.id.status).setVisibility(View.VISIBLE);
+            }
+
+        }
+
         return root_view;
+    }
+
+    private void setNeedClearification(String qid, View root_view) {
+        final Progress progress = new Progress(getActivity());
+        progress.show();
+        Call<CategoryOperationsEditResponse> call = RetrofitClient.getInstance().getApi().NeedClarification(qid);
+        call.enqueue(new Callback<CategoryOperationsEditResponse>() {
+            @Override
+            public void onResponse(Call<CategoryOperationsEditResponse> call, Response<CategoryOperationsEditResponse> response) {
+                progress.dismiss();
+                if (response.isSuccessful()) {
+                    if (response.body().isError())
+                        Constants.Alert(getActivity(), response.body().getErrormsg());
+                    else {
+                        Constants.Alert(getActivity(), response.body().getErrormsg());
+                        root_view.findViewById(R.id.need_Clearification).setVisibility(View.GONE);
+                    }
+
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<CategoryOperationsEditResponse> call, Throwable t) {
+                progress.dismiss();
+            }
+        });
     }
 
 

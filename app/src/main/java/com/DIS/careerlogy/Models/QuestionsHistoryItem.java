@@ -1,121 +1,106 @@
 package com.DIS.careerlogy.Models;
 
+import java.util.List;
+
 import com.google.gson.annotations.SerializedName;
 
-public class QuestionsHistoryItem{
+public class QuestionsHistoryItem {
 
-	@SerializedName("Q_Added_DateTime")
-	private String qAddedDateTime;
+    @SerializedName("QuestionsHistory")
+    private List<QuestionsHistoryItem> questionsHistory;
 
-	@SerializedName("Q_Modified_DateTime")
-	private String qModifiedDateTime;
+    @SerializedName("answeredBy")
+    private String answeredBy;
 
-	@SerializedName("Q_Question_Title")
-	private String qQuestionTitle;
+    @SerializedName("Q_Modified_DateTime")
+    private Object qModifiedDateTime;
 
-	@SerializedName("Q_IsActive")
-	private String qIsActive;
+    @SerializedName("Q_Question_Title")
+    private String qQuestionTitle;
 
-	@SerializedName("Q_Deleted_DateTime")
-	private String qDeletedDateTime;
+    @SerializedName("Q_IsActive")
+    private String qIsActive;
 
-	@SerializedName("A_Answer")
-	private String aAnswer;
+    @SerializedName("A_Added_DateTime")
+    private String aAddedDateTime;
 
-	@SerializedName("Q_Question")
-	private String qQuestion;
+    @SerializedName("Q_Deleted_DateTime")
+    private Object qDeletedDateTime;
 
-	@SerializedName("Q_Answered")
-	private String qAnswered;
+    @SerializedName("Q_Question")
+    private String qQuestion;
 
-	@SerializedName("Q_ID")
-	private String qID;
+    @SerializedName("Q_Need_Clarification")
+    private String qNeedClarification;
 
-	public void setQAddedDateTime(String qAddedDateTime){
-		this.qAddedDateTime = qAddedDateTime;
-	}
+    @SerializedName("Q_ID")
+    private String qID;
 
-	public String getQAddedDateTime(){
-		return qAddedDateTime;
-	}
+    @SerializedName("Q_Added_DateTime")
+    private String qAddedDateTime;
 
-	public void setQModifiedDateTime(String qModifiedDateTime){
-		this.qModifiedDateTime = qModifiedDateTime;
-	}
+    @SerializedName("A_Answer")
+    private String aAnswer;
 
-	public String getQModifiedDateTime(){
-		return qModifiedDateTime;
-	}
+    @SerializedName("PSC_Answer_Document_URL")
+    private String pSCAnswerDocumentURL;
 
-	public void setQQuestionTitle(String qQuestionTitle){
-		this.qQuestionTitle = qQuestionTitle;
-	}
+    @SerializedName("Q_Answered")
+    private String qAnswered;
 
-	public String getQQuestionTitle(){
-		return qQuestionTitle;
-	}
+    public List<QuestionsHistoryItem> getQuestionsHistory() {
+        return questionsHistory;
+    }
 
-	public void setQIsActive(String qIsActive){
-		this.qIsActive = qIsActive;
-	}
+    public String getAnsweredBy() {
+        return answeredBy;
+    }
 
-	public String getQIsActive(){
-		return qIsActive;
-	}
+    public Object getQModifiedDateTime() {
+        return qModifiedDateTime;
+    }
 
-	public void setQDeletedDateTime(String qDeletedDateTime){
-		this.qDeletedDateTime = qDeletedDateTime;
-	}
+    public String getQQuestionTitle() {
+        return qQuestionTitle;
+    }
 
-	public String getQDeletedDateTime(){
-		return qDeletedDateTime;
-	}
+    public String getQIsActive() {
+        return qIsActive;
+    }
 
-	public void setAAnswer(String aAnswer){
-		this.aAnswer = aAnswer;
-	}
+    public String getAAddedDateTime() {
+        return aAddedDateTime;
+    }
 
-	public String getAAnswer(){
-		return aAnswer;
-	}
+    public Object getQDeletedDateTime() {
+        return qDeletedDateTime;
+    }
 
-	public void setQQuestion(String qQuestion){
-		this.qQuestion = qQuestion;
-	}
+    public String getQQuestion() {
+        return qQuestion;
+    }
 
-	public String getQQuestion(){
-		return qQuestion;
-	}
+    public String getQNeedClarification() {
+        return qNeedClarification;
+    }
 
-	public void setQAnswered(String qAnswered){
-		this.qAnswered = qAnswered;
-	}
+    public String getQID() {
+        return qID;
+    }
 
-	public String getQAnswered(){
-		return qAnswered;
-	}
+    public String getQAddedDateTime() {
+        return qAddedDateTime;
+    }
 
-	public void setQID(String qID){
-		this.qID = qID;
-	}
+    public String getAAnswer() {
+        return aAnswer;
+    }
 
-	public String getQID(){
-		return qID;
-	}
+    public String getPSCAnswerDocumentURL() {
+        return pSCAnswerDocumentURL;
+    }
 
-	@Override
- 	public String toString(){
-		return 
-			"QuestionsHistoryItem{" + 
-			"q_Added_DateTime = '" + qAddedDateTime + '\'' + 
-			",q_Modified_DateTime = '" + qModifiedDateTime + '\'' + 
-			",q_Question_Title = '" + qQuestionTitle + '\'' + 
-			",q_IsActive = '" + qIsActive + '\'' + 
-			",q_Deleted_DateTime = '" + qDeletedDateTime + '\'' + 
-			",a_Answer = '" + aAnswer + '\'' + 
-			",q_Question = '" + qQuestion + '\'' + 
-			",q_Answered = '" + qAnswered + '\'' + 
-			",q_ID = '" + qID + '\'' + 
-			"}";
-		}
+    public String getQAnswered() {
+        return qAnswered;
+    }
 }

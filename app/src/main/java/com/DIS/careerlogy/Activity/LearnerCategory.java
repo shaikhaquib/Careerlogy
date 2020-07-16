@@ -61,7 +61,11 @@ public class LearnerCategory extends AppCompatActivity {
         ItemClickListener itemClickListener = new ItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-
+                ProblemCategoryItem categoryItem = problemCategories.get(pos);
+                Intent intent = new Intent(getApplicationContext(), ProblemSubCategoryAdmin.class);
+                intent.putExtra("problemCategoryId", categoryItem.getPCID());
+                intent.putExtra("title", categoryItem.getPCName());
+                startActivity(intent);
             }
         };
         ItemClickListener longClicklistener = new ItemClickListener() {

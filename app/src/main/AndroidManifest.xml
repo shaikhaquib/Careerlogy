@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Activity.ProblemSubCategoryAdmin"
+            android:theme="@style/AppNoActionBar" />
+        <activity
             android:name=".Activity.EntrepreneurshipCategory"
             android:theme="@style/AppNoActionBar" />
         <activity

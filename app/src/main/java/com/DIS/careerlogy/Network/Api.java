@@ -11,12 +11,14 @@ import com.DIS.careerlogy.Models.HistoryResponse;
 import com.DIS.careerlogy.Models.LoginResponse;
 import com.DIS.careerlogy.Models.ModelUserCategory;
 import com.DIS.careerlogy.Models.OTPResponse;
+import com.DIS.careerlogy.Models.ProbSubCatLstItem;
 import com.DIS.careerlogy.Models.ProblemCategory;
 import com.DIS.careerlogy.Models.ProblemSubCategoryResponse;
 import com.DIS.careerlogy.Models.QoutesResponse;
 import com.DIS.careerlogy.Models.QuestionListResponse;
 import com.DIS.careerlogy.Models.RecentResponse;
 import com.DIS.careerlogy.Models.RegisterResponse;
+import com.DIS.careerlogy.Models.ResponseSubCategoryAdmin;
 import com.DIS.careerlogy.Models.StateModel;
 import com.DIS.careerlogy.Models.TestimonialResponse;
 import com.DIS.careerlogy.Models.UploadTestimonialResponse;
@@ -179,6 +181,29 @@ public interface Api {
             @Field("catname") String catname,
             @Field("pcid") String pcid,
             @Field("userid") String userid
+    );
+
+    @FormUrlEncoded
+    @POST("SubCategoryOperations")
+    Call<CategoryOperationsEditResponse> SubCategoryOperations(
+            @Field("option") String option,
+            @Field("fileurl") String fileurl,
+            @Field("subcatname") String subcatname,
+            @Field("catid") String catid,
+            @Field("pscid") String pscid,
+            @Field("userid") String userid
+    );
+
+    @FormUrlEncoded
+    @POST("SubCategoryOperations")
+    Call<ResponseSubCategoryAdmin> SubCategoryOperationslist(
+            @Field("option") String option
+    );
+
+    @FormUrlEncoded
+    @POST("NeedClarification")
+    Call<CategoryOperationsEditResponse> NeedClarification(
+            @Field("QID") String qid
     );
 
 

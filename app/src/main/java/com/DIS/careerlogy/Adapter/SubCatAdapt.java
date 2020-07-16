@@ -9,18 +9,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.DIS.careerlogy.Activity.StudentSubCategory;
 import com.DIS.careerlogy.Extra.ItemClickListener;
-import com.DIS.careerlogy.Models.ProblemSubCategoryItem;
+import com.DIS.careerlogy.Models.ProbSubCatLstItem;
+import com.DIS.careerlogy.Models.ProbSubCatLstItem;
 import com.DIS.careerlogy.R;
 
 import java.util.List;
 
-public class LearningSubAdapter extends RecyclerView.Adapter<LearningSubAdapter.ViewHolder> {
+public class SubCatAdapt extends RecyclerView.Adapter<SubCatAdapt.ViewHolder> {
     Activity activity;
-    List<ProblemSubCategoryItem> problemSubCategories;
+    List<ProbSubCatLstItem> problemSubCategories;
     ItemClickListener itemClickListener;
-    public LearningSubAdapter(Activity studentSubCategory, List<ProblemSubCategoryItem> problemSubCategories, ItemClickListener itemClickListener) {
+
+    public SubCatAdapt(Activity studentSubCategory, List<ProbSubCatLstItem> problemSubCategories, ItemClickListener itemClickListener) {
         this.activity = studentSubCategory;
         this.problemSubCategories = problemSubCategories;
         this.itemClickListener = itemClickListener;
@@ -28,16 +29,16 @@ public class LearningSubAdapter extends RecyclerView.Adapter<LearningSubAdapter.
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(activity).inflate(R.layout.itemlayout_subcate,parent,false));
+    public SubCatAdapt.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new SubCatAdapt.ViewHolder(LayoutInflater.from(activity).inflate(R.layout.itemlayout_subcate, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ViewHolder viewHolder = (ViewHolder)holder;
-        ProblemSubCategoryItem problem = problemSubCategories.get(position);
+    public void onBindViewHolder(@NonNull SubCatAdapt.ViewHolder holder, int position) {
+        SubCatAdapt.ViewHolder viewHolder = (SubCatAdapt.ViewHolder) holder;
+        ProbSubCatLstItem problem = problemSubCategories.get(position);
         viewHolder.text.setText(problem.getPSCName());
-        viewHolder.icon.setText(String.valueOf(position+1));
+        viewHolder.icon.setText(String.valueOf(position + 1));
     }
 
     @Override
@@ -48,6 +49,7 @@ public class LearningSubAdapter extends RecyclerView.Adapter<LearningSubAdapter.
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView text;
         TextView icon;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -60,7 +62,7 @@ public class LearningSubAdapter extends RecyclerView.Adapter<LearningSubAdapter.
 
         @Override
         public void onClick(View view) {
-            itemClickListener.onItemClick(view,getAdapterPosition());
+            itemClickListener.onItemClick(view, getAdapterPosition());
         }
     }
 

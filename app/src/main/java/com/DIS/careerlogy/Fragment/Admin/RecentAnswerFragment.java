@@ -75,6 +75,7 @@ public class RecentAnswerFragment extends Fragment {
                     bundle.putString(AnswerFragment.questinedDesc, recentlyAnsweredQuestionsItem2.getQQuestion());
                     bundle.putString(AnswerFragment.questinedTitle, recentlyAnsweredQuestionsItem2.getQQuestionTitle());
                     bundle.putString(AnswerFragment.AnswerID, recentlyAnsweredQuestionsItem2.getAID());
+                    bundle.putString(AnswerFragment.QuestionID, recentlyAnsweredQuestionsItem2.getQID());
 
                     showDialogFullscreen(bundle,getFragmentManager());
                 }

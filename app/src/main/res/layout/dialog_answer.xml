@@ -2,15 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
     android:fitsSystemWindows="true"
-    android:layout_marginTop="30dp"
+    android:layout_marginTop="24dp"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/AnswerViewMode"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -228,6 +230,47 @@
 
 
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/need_Clearification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="bottom|center_horizontal"
+        app:icon="@drawable/ic_doubt"
+        android:text="Need Clarification"
+        android:textColor="@android:color/white"
+        app:iconTint="@android:color/white"
+        app:backgroundTint="@color/colorPrimary"
+        android:clickable="true"
+        android:src="@drawable/ic_add_black_24dp" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:elevation="?cardMaxElevation">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:maxLines="1"
+            android:layout_marginLeft="16dp"
+            android:layout_gravity="center"
+            android:text="Sent for expert answer.."
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+    </com.google.android.material.card.MaterialCardView>
 
 
 </LinearLayout>
