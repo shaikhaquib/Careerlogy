@@ -37,7 +37,7 @@ import retrofit2.Response;
 
 public class QuestionHistory extends AppCompatActivity {
     RecyclerView rvLearningSub;
-    RecyclerView.Adapter entrepreneursSubAdapter;
+    RecyclerView.Adapter questionsHistAdapter;
     List<QuestionsHistoryItem> questions = new ArrayList<>();
     int DIALOG_QUEST_CODE = 9001;
     @Override
@@ -95,12 +95,17 @@ public class QuestionHistory extends AppCompatActivity {
             public void onItemClick(View v, int pos) {
                 QuestionsHistoryItem categoryItem = questions.get(pos);
                 int id = v.getId();
-                if (id == R.id.viewAnswer)
-                {
+                if (id == R.id.viewAnswer) {
                     Bundle bundle = new Bundle();
                     bundle.putString(AnswerFragment.questinedBy, LoginActivity.USER.getUMName());
                     bundle.putString(AnswerFragment.questinedOn, Constants.Date(categoryItem.getQAddedDateTime()));
-                    bundle.putString(AnswerFragment.questinedAnswer, categoryItem.getAAnswer());
+                    if (categoryItem.getQAnswered().equals("0") && categoryItem.getQNeedClarification().equals("0") && !categoryItem.getPSCAnswerDocumentURL().isEmpty()) {
+                        bundle.putString(AnswerFragment.questinedAnswer, "Please refer to the link below to know the answers to your questions. \n" + categoryItem.getPSCAnswerDocumentURL());
+                    } else if (categoryItem.getQAnswered().equals("0") && categoryItem.getQNeedClarification().equals("1") && !categoryItem.getPSCAnswerDocumentURL().isEmpty()) {
+                        bundle.putString(AnswerFragment.questinedAnswer, "Please refer to the link below to know the answers to your questions. \n" + categoryItem.getPSCAnswerDocumentURL());
+                    } else {
+                        bundle.putString(AnswerFragment.questinedAnswer, categoryItem.getAAnswer());
+                    }
                     bundle.putString(AnswerFragment.questinedDesc, categoryItem.getQQuestion());
                     bundle.putString(AnswerFragment.questinedTitle, categoryItem.getQQuestionTitle());
                     bundle.putString(AnswerFragment.isAnswered, categoryItem.getQAnswered());
@@ -113,13 +118,13 @@ public class QuestionHistory extends AppCompatActivity {
             }
         };
 
-        rvLearningSub =findViewById(R.id.rvQuestionList);
+        rvLearningSub = findViewById(R.id.rvQuestionList);
         rvLearningSub.setHasFixedSize(true);
         rvLearningSub.setLayoutManager(new LinearLayoutManager(this));
         rvLearningSub.addItemDecoration(new MyItemDecoration());
-        entrepreneursSubAdapter = new QuestionsHistAdapter(this,questions, itemClickListener);
-        rvLearningSub.setAdapter(entrepreneursSubAdapter);
-            getCategoryHistory();
+        questionsHistAdapter = new QuestionsHistAdapter(this, questions, itemClickListener);
+        rvLearningSub.setAdapter(questionsHistAdapter);
+        getCategoryHistory();
 
     }
 
@@ -133,7 +138,7 @@ public class QuestionHistory extends AppCompatActivity {
                 progress.dismiss();
                 if (response.isSuccessful()) {
                     questions.addAll(response.body().getQuestionsHistory());
-                    entrepreneursSubAdapter.notifyDataSetChanged();
+                    questionsHistAdapter.notifyDataSetChanged();
                 }
 
                 if (questions.isEmpty()) {

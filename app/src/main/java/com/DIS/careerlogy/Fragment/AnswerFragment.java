@@ -136,7 +136,7 @@ public class AnswerFragment extends DialogFragment {
             answered = bundle.getString(isAnswered);
             needclarification = bundle.getString(needClarification);
 
-            if (answer.equals("1") && needclarification.equals("1")) {
+            if (answered.equals("0") && needclarification.equals("0")) {
                 root_view.findViewById(R.id.need_Clearification).setVisibility(View.VISIBLE);
                 root_view.findViewById(R.id.need_Clearification).setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -144,7 +144,7 @@ public class AnswerFragment extends DialogFragment {
                         setNeedClearification(bundle.getString(QuestionID), root_view);
                     }
                 });
-            } else if (answer.equals("0") && needclarification.equals("1")) {
+            } else if (answered.equals("0") && needclarification.equals("1")) {
                 root_view.findViewById(R.id.status).setVisibility(View.VISIBLE);
             }
 

@@ -95,10 +95,15 @@ public class QuestionsHistAdapter extends RecyclerView.Adapter<QuestionsHistAdap
             questinedTitle.setText(questionsItem.getQQuestionTitle());
             questinedOn.setText(Constants.Date(questionsItem.getQAddedDateTime()));
 
-            if (questionsItem.getAAnswer()!=null){
+            if (questionsItem.getQAnswered().equals("0") && questionsItem.getQNeedClarification().equals("0") && !questionsItem.getPSCAnswerDocumentURL().isEmpty()) {
                 answerView.setVisibility(View.VISIBLE);
-               // answeredOn.setText(Constants.Date(questionsItem.getA()));
-
+                answeredBy.setText("Auto Generated ");
+            } else if (questionsItem.getQAnswered().equals("0") && questionsItem.getQNeedClarification().equals("1") && !questionsItem.getPSCAnswerDocumentURL().isEmpty()) {
+                answerView.setVisibility(View.VISIBLE);
+                answeredBy.setText("Auto Generated\n(Under Review)");
+            } else if (questionsItem.getAAnswer() != null) {
+                answerView.setVisibility(View.VISIBLE);
+                // answeredOn.setText(Constants.Date(questionsItem.getA()));
             }
 
         }
