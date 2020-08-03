@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.DIS.careerlogy.Activity.LearnerCategory;
+import com.DIS.careerlogy.Extra.Constants;
 import com.DIS.careerlogy.Extra.ItemClickListener;
 import com.DIS.careerlogy.Models.ProblemCategoryItem;
 import com.DIS.careerlogy.R;
@@ -21,8 +22,8 @@ import java.util.List;
 
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHolder> {
 
-    int img [] = {R.drawable.ic_presentation , R.drawable.ic_homework , R.drawable.ic_time , R.drawable.ic_test , R.drawable.ic_analysis , R.drawable.ic_test_a , R.drawable.ic_family};
-    String name [] = {"Learning in Class Room","Homework" ,"Exam Date Announcement" , "Day of Exam" , "Reporting Exam to Parent" ,"Day of Result" , "P.T.A Meeting"};
+    int img[] = {R.drawable.ic_presentation, R.drawable.ic_homework, R.drawable.ic_time, R.drawable.ic_test, R.drawable.ic_analysis, R.drawable.ic_test_a, R.drawable.ic_family, R.drawable.ic_goal, R.drawable.ic_democracy};
+    String name[] = {"Learning in Class Room", "Homework", "Exam Date Announcement", "Day of Exam", "Reporting Exam to Parent", "Day of Result", "P.T.A Meeting"};
     private List<ProblemCategoryItem> problemCategories = new ArrayList<>();
     ItemClickListener clickListener;
     ItemClickListener longClicklistener;
@@ -53,7 +54,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
 
         ProblemCategoryItem problemCategoryItem = problemCategories.get(position);
         ViewHolder viewHolder = (ViewHolder)holder;
-        viewHolder.text.setText(problemCategoryItem.getPCName());
+        viewHolder.text.setText(Constants.capitalize(problemCategoryItem.getPCName()));
         viewHolder.icon.setImageResource(img[position]);
 
     }

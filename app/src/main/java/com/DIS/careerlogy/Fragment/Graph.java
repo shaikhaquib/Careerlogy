@@ -199,7 +199,7 @@ public class Graph extends Fragment {
                     xAxis.setDrawGridLines(false);
                     xAxis.setLabelRotationAngle(-45);
                     //xAxis.setAxisMaximum(6);
-                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
                     xAxis.setValueFormatter(new IndexAxisValueFormatter(xVals));
 //Y-axis
                     chart.getAxisRight().setEnabled(false);
@@ -265,7 +265,7 @@ public class Graph extends Fragment {
                     xAxis2.setDrawGridLines(false);
                     xAxis2.setLabelRotationAngle(-45);
                     //xAxis2.setAxisMaximum(6);
-                    xAxis2.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    xAxis2.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
                     xAxis2.setValueFormatter(new IndexAxisValueFormatter(xVals2));
 //Y-axis
                     chart2.getAxisRight().setEnabled(false);

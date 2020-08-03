@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.DIS.careerlogy.Activity.EntrepreneurSubCategory;
+import com.DIS.careerlogy.Extra.Constants;
 import com.DIS.careerlogy.Extra.ItemClickListener;
 import com.DIS.careerlogy.Models.ProblemSubCategoryItem;
 import com.DIS.careerlogy.R;
@@ -37,8 +38,8 @@ public class EntrepreneursSubAdapter extends RecyclerView.Adapter<EntrepreneursS
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder)holder;
         ProblemSubCategoryItem problem= problemSubCategories.get(position);
-        viewHolder.text.setText(problem.getPSCName());
-        viewHolder.icon.setText(String.valueOf(position+1));
+        viewHolder.text.setText(Constants.capitalize(problem.getPSCName()));
+        viewHolder.icon.setText(String.valueOf(position + 1));
     }
 
     @Override

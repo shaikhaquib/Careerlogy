@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.DIS.careerlogy.Extra.Constants;
 import com.DIS.careerlogy.Extra.ItemClickListener;
 import com.DIS.careerlogy.Models.ProbSubCatLstItem;
 import com.DIS.careerlogy.Models.ProbSubCatLstItem;
@@ -37,7 +38,7 @@ public class SubCatAdapt extends RecyclerView.Adapter<SubCatAdapt.ViewHolder> {
     public void onBindViewHolder(@NonNull SubCatAdapt.ViewHolder holder, int position) {
         SubCatAdapt.ViewHolder viewHolder = (SubCatAdapt.ViewHolder) holder;
         ProbSubCatLstItem problem = problemSubCategories.get(position);
-        viewHolder.text.setText(problem.getPSCName());
+        viewHolder.text.setText(Constants.capitalize(problem.getPSCName()));
         viewHolder.icon.setText(String.valueOf(position + 1));
     }
 
