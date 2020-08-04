@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:fitsSystemWindows="true"
+        app:statusBarScrim="@color/colorPrimary"
         android:background="@drawable/background_gradient"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -20,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
+            app:statusBarScrim="@color/colorPrimary"
             android:background="@drawable/background_gradient"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
@@ -29,6 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="66dp"
                 app:layout_collapseMode="pin"
+                app:statusBarScrim="@color/colorPrimary"
                 android:paddingTop="10dp"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
@@ -58,7 +61,15 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <include layout="@layout/content_feed_back" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-50dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <include layout="@layout/content_feed_back" />
+
+    </androidx.core.widget.NestedScrollView>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

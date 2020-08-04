@@ -1,6 +1,7 @@
 package com.DIS.careerlogy.Activity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,14 +9,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.DIS.careerlogy.Extra.Constants;
+import com.DIS.careerlogy.LoginActivity;
 import com.DIS.careerlogy.R;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Properties;
@@ -31,7 +39,9 @@ import javax.mail.internet.MimeMessage;
 
 public class FeedBack extends AppCompatActivity {
 
-    TextInputEditText email, subject, message;
+    EditText f1, f2, f3, f4, f5, f6, f7;
+    RadioGroup radioButton;
+    String subject = "Careerlogy Feedback";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +55,37 @@ public class FeedBack extends AppCompatActivity {
 
         setContentView(R.layout.activity_feed_back);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        email = findViewById(R.id.email);
-        subject = findViewById(R.id.subject);
-        message = findViewById(R.id.message);
+
+        f1 = findViewById(R.id.f1);
+        f2 = findViewById(R.id.f2);
+        f3 = findViewById(R.id.f3);
+        f4 = findViewById(R.id.f4);
+        f5 = findViewById(R.id.f5);
+        f6 = findViewById(R.id.f6);
+        f7 = findViewById(R.id.f7);
+
+        radioButton = findViewById(R.id.radioGroup);
+        TextView txtType = findViewById(R.id.txtType);
+
+        radioButton.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                RadioButton radioButton = findViewById(checkedId);
+                if (radioButton.getTag().equals("1")) {
+                    txtType.setText("What are the educational problems not included in these application?");
+                    f7.setTag("What are the educational problems not included in these application?");
+                    subject = "Careerlogy Feedback for Student";
+                } else {
+                    txtType.setText("What are the entrepreneurial problems not included in these application?");
+                    f7.setTag("What are the entrepreneurial problems not included in these application?");
+                    subject = "Careerlogy Feedback for Entrepreneurship";
+                }
+
+            }
+        });
+
+
         setSupportActionBar(toolbar);
 
 
@@ -96,18 +134,44 @@ public class FeedBack extends AppCompatActivity {
 
        /* Global.interstitialAd(getApplicationContext());
         Global.CLICKCOUNT++;*/
-
-        if (email.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Email field is required", Toast.LENGTH_SHORT).show();
-            subject.setError("Email field is required");
-        } else if (subject.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Subject field is required", Toast.LENGTH_SHORT).show();
-            subject.setError("Subject field is required");
-        } else if (message.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Message field is required", Toast.LENGTH_SHORT).show();
-            message.setError("Message field is required");
+        if (f1.getText().toString().isEmpty()) {
+            Toast.makeText(this, "This field is required", Toast.LENGTH_SHORT).show();
+            f1.setError("Email field is required");
+        } else if (f2.getText().toString().isEmpty()) {
+            Toast.makeText(this, "This field is required", Toast.LENGTH_SHORT).show();
+            f2.setError("Email field is required");
+        } else if (f3.getText().toString().isEmpty()) {
+            Toast.makeText(this, "This field is required", Toast.LENGTH_SHORT).show();
+            f3.setError("Email field is required");
+        } else if (f4.getText().toString().isEmpty()) {
+            Toast.makeText(this, "This field is required", Toast.LENGTH_SHORT).show();
+            f4.setError("Email field is required");
+        } else if (f5.getText().toString().isEmpty()) {
+            Toast.makeText(this, "This field is required", Toast.LENGTH_SHORT).show();
+            f5.setError("Email field is required");
+        } else if (f6.getText().toString().isEmpty()) {
+            Toast.makeText(this, "This field is required", Toast.LENGTH_SHORT).show();
+            f6.setError("Email field is required");
+        } else if (f7.getText().toString().isEmpty()) {
+            Toast.makeText(this, "This field is required", Toast.LENGTH_SHORT).show();
+            f7.setError("Email field is required");
         } else {
-            new SendEmail().execute(email.getText().toString(), message.getText().toString(), message.getText().toString());
+
+            String mailBody =
+                    "User Details :" + "\n\n" +
+                            "User Name :" + LoginActivity.USER.getUMName() + "\n" +
+                            "Mobile No :" + LoginActivity.USER.getUMMobileNo() + "\n" +
+                            "Email Id  :" + LoginActivity.USER.getUMEmailID() + "\n\n" +
+                            "Question :" + f1.getTag().toString() + "\n" + "Answer :" + f1.getText().toString() + "\n\n" +
+                            "Question :" + f2.getTag().toString() + "\n" + "Answer :" + f2.getText().toString() + "\n\n" +
+                            "Question :" + f3.getTag().toString() + "\n" + "Answer :" + f3.getText().toString() + "\n\n" +
+                            "Question :" + f4.getTag().toString() + "\n" + "Answer :" + f4.getText().toString() + "\n\n" +
+                            "Question :" + f5.getTag().toString() + "\n" + "Answer :" + f5.getText().toString() + "\n\n" +
+                            "Question :" + f6.getTag().toString() + "\n" + "Answer :" + f6.getText().toString() + "\n\n" +
+                            "Question :" + f7.getTag().toString() + "\n" + "Answer :" + f7.getText().toString() + "\n\n";
+
+
+            new SendEmail().execute(subject, mailBody);
         }
 
 
@@ -150,8 +214,8 @@ public class FeedBack extends AppCompatActivity {
                 message.setFrom(new InternetAddress("no-reply@careerlogy.com"));
                 message.setRecipients(Message.RecipientType.TO,
                         InternetAddress.parse("shaikhaquib119@gmail.com"));
-                message.setSubject(strings[1]);
-                message.setText(strings[2]);
+                message.setSubject(strings[0]);
+                message.setText(strings[1]);
 
                 Transport.send(message);
 
@@ -167,6 +231,18 @@ public class FeedBack extends AppCompatActivity {
         protected void onPostExecute(Integer integer) {
             super.onPostExecute(integer);
             progressDialog.dismiss();
+
+            new MaterialAlertDialogBuilder(FeedBack.this)
+                    .setTitle("Alert")
+                    .setMessage("Your feedback has been recorded")
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    })
+                    .show();
+
         }
     }
 }

@@ -81,8 +81,7 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Activity.FeedBack"
-            android:theme="@style/AppNoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:theme="@style/AppNoActionBar" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppNoActionBar"
