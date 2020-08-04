@@ -186,7 +186,7 @@ public class FeedBack extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             progressDialog = new ProgressDialog(FeedBack.this);
-            progressDialog.setMessage("Uploading, please wait...");
+            progressDialog.setMessage("Recording Your feedback...");
             progressDialog.show();
         }
 
