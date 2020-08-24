@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="80dp"
+            android:adjustViewBounds="true"
             android:src="@drawable/ic_careerlogy_login_logo" />
 
         <View

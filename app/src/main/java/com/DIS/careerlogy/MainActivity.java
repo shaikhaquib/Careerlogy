@@ -369,6 +369,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.about:
                 startActivity(new Intent(getApplicationContext(), Disclamer.class));
                 break;
+            case R.id.aboutUs:
+                Uri webpage = Uri.parse("http://intellipedia.in/about-us");
+                Intent intent1 = new Intent(Intent.ACTION_VIEW, webpage);
+                if (intent1.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent1);
+                }
+                break;
 
         }
         return true;

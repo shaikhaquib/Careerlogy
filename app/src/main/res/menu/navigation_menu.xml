@@ -32,6 +32,10 @@
         android:icon="@drawable/ic_outline_feedback_24"
         android:title="Feedback" />
     <item
+        android:id="@+id/aboutUs"
+        android:icon="@drawable/ic_outline_apartment_24"
+        android:title="About Us" />
+    <item
         android:id="@+id/logout"
         android:icon="@drawable/ic_logout"
         android:title="Logout" />

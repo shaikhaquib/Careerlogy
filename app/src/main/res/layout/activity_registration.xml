@@ -16,8 +16,8 @@
         <ImageView
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:tint="@android:color/white"
             android:layout_gravity="center"
+            android:adjustViewBounds="true"
             android:src="@drawable/ic_careerlogy_login_logo"/>
 
         <LinearLayout
