@@ -45,9 +45,47 @@
 
 
         <LinearLayout
+            android:id="@+id/vserial"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp">
+            android:visibility="gone"
+            android:layout_marginTop="0dp">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Serial Number"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:textSize="16dp"
+                app:cornerRadius="4dp" />
+
+            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                android:id="@+id/serrialNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Cancel"
+                app:initialNumber="1"
+                app:backGroundColor="@android:color/transparent"
+                app:textColor="#000"
+                app:textSize="8dp"
+                android:textAllCaps="false"
+                android:textSize="16dp"
+                app:cornerRadius="4dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
 
 
             <com.google.android.material.button.MaterialButton

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.DIS.careerlogy">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,6 +14,7 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@drawable/ic_careerlogy_new_logo_01"
         android:supportsRtl="true"
+        tools:replace="android:icon"
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activity.ProblemSubCategoryAdmin"
@@ -102,6 +104,11 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/external_files" />
         </provider>
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_Z705JYG6MJLaUA" />
+
     </application>
 
 </manifest>

@@ -8,17 +8,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Constants
-{
+public class Constants {
 
+
+    public static boolean isSubscribed = false;
 
     public static final String DATABASE_NAME = "UserDB";
-    public static void Alert(Context context,String message) {
-         new MaterialAlertDialogBuilder(context)
-                 .setTitle("Alert")
-                 .setMessage(message)
-                 .setPositiveButton("Ok",null)
-                 .show();
+
+    public static void Alert(Context context, String message) {
+        new MaterialAlertDialogBuilder(context)
+                .setTitle("Alert")
+                .setMessage(message)
+                .setPositiveButton("Ok", null)
+                .show();
 
     }
 

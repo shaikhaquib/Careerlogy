@@ -219,6 +219,38 @@
                 app:iconGravity="start"
                 app:icon="@drawable/ic_business_pack" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/singleCoupon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:padding="10dp"
+                app:iconPadding="16dp"
+                android:gravity="start|center"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                android:text="Genrate Coupon"
+                app:iconSize="32dp"
+                app:cornerRadius="8dp"
+                app:iconGravity="start"
+                app:icon="@drawable/ic_coupons" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/multipleCoupon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:padding="10dp"
+                app:iconPadding="16dp"
+                android:gravity="start|center"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                android:text="Genrate Coupon For Group"
+                app:iconSize="32dp"
+                app:cornerRadius="8dp"
+                app:iconGravity="start"
+                app:icon="@drawable/ic_coupons" />
+
 
         </LinearLayout>
     </LinearLayout>

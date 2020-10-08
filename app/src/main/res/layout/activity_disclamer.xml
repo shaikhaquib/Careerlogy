@@ -46,6 +46,8 @@
                 android:fontFamily="@font/roboto_regular"
                 android:layout_marginTop="14sp"
                 android:textColor="#E6000000"
+                android:lineSpacingExtra="1dp"
+                android:lineSpacingMultiplier="1.5"
                 android:text="@string/disclamer"
                 android:autoLink="none"
                 android:clickable="true"

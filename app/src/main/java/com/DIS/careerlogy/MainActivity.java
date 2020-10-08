@@ -1,5 +1,6 @@
 package com.DIS.careerlogy;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -16,8 +17,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -33,7 +36,10 @@ import com.DIS.careerlogy.Activity.ProfileActivity;
 import com.DIS.careerlogy.Activity.QuotesList;
 import com.DIS.careerlogy.Extra.EntrepreneursInstruction;
 import com.DIS.careerlogy.Extra.PopSplash;
+import com.DIS.careerlogy.Extra.Progress;
 import com.DIS.careerlogy.Extra.StudentInstruction;
+import com.DIS.careerlogy.Models.CategoryOperationsEditResponse;
+import com.DIS.careerlogy.Models.CheckSubscribtion;
 import com.DIS.careerlogy.Models.DownloadlinksModel;
 import com.DIS.careerlogy.Models.UserinfoItem;
 import com.DIS.careerlogy.Network.RetrofitClient;
@@ -56,6 +62,12 @@ import com.DIS.careerlogy.Fragment.Graph;
 import com.DIS.careerlogy.Fragment.Student;
 import com.DIS.careerlogy.Fragment.Testimonial;
 import com.DIS.careerlogy.Network.UserDatabase;
+import com.google.android.material.textfield.TextInputEditText;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,7 +75,7 @@ import retrofit2.Response;
 
 import static com.DIS.careerlogy.LoginActivity.USER;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, PaymentResultListener {
 
     BottomNavigationView bottomNav;
     ViewPager viewPager;
@@ -75,16 +87,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     MenuItem prevMenuItem;
     ExtendedFloatingActionButton floatingActionButton;
     private AppBarConfiguration mAppBarConfiguration;
+    private static final String TAG = "MainActivity";
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initToolbar();
-        userDatabase = Room.databaseBuilder(getApplicationContext(),UserDatabase.class, Constants.DATABASE_NAME).build();
+        userDatabase = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, Constants.DATABASE_NAME).build();
 
         //Getting the Navigation Controller
-       // navController = Navigation.findNavController(this, R.id.fragment);
+        // navController = Navigation.findNavController(this, R.id.fragment);
         bottomNav = findViewById(R.id.navigation);
         viewPager = findViewById(R.id.viewpager);
         title = findViewById(R.id.title);
@@ -92,16 +106,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         floatingActionButton.setVisibility(View.GONE);
         icon = findViewById(R.id.icon);
         viewPager.setOffscreenPageLimit(5);
+        checkUserSubscription();
+        Logs();
+        drawer = findViewById(R.id.drawer_layout);
+
 
         updateTitle = new UpdateTitle() {
             @Override
             public void updateData(int position) {
                 String[] arrTitle = {"Learner", "Entrepreneurship", "Graphs", "Articles", "Testimonial Videos"};
-                int[] arrIcon = {R.drawable.ic_student,R.drawable.ic_business,R.drawable.ic_graph,R.drawable.ic_articles,R.drawable.ic_video};
+                int[] arrIcon = {R.drawable.ic_student, R.drawable.ic_business, R.drawable.ic_graph, R.drawable.ic_articles, R.drawable.ic_video};
                 title.setText(arrTitle[position]);
                 icon.setImageResource(arrIcon[position]);
-                if (position == 0){
-                    floatingActionButton.setVisibility(View.VISIBLE);
+                if (position == 0) {
+                    if (Constants.isSubscribed)
+                        floatingActionButton.setVisibility(View.VISIBLE);
                     floatingActionButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -116,8 +135,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             new StudentInstruction(MainActivity.this).show();
                         }
                     });
-                }else if (position == 1){
-                    floatingActionButton.setVisibility(View.VISIBLE);
+                }else if (position == 1) {
+                    if (Constants.isSubscribed)
+                        floatingActionButton.setVisibility(View.VISIBLE);
                     floatingActionButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -439,4 +459,214 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .setNegativeButton("No", null)
                 .show();
     }
+
+    public void startPayment() {
+        /**
+         * You need to pass current activity in order to let Razorpay create CheckoutActivity
+         */
+        final Activity activity = this;
+
+        final Checkout co = new Checkout();
+
+        try {
+            JSONObject options = new JSONObject();
+            options.put("name", getResources().getString(R.string.app_name));
+            options.put("description", "Subscription Payment");
+            //You can omit the image option to fetch the image from dashboard
+            options.put("image", "https://rzp-mobile.s3.amazonaws.com/images/rzp.png");
+            options.put("currency", "INR");
+            // amount is in paise so please multiple it by 100
+            //Payment failed Invalid amount (should be passed in integer paise. Minimum value is 100 paise, i.e. ₹ 1)
+            double total;
+            total = 2 * 100;
+            options.put("amount", total);
+
+            JSONObject preFill = new JSONObject();
+            preFill.put("email", "nitinsalkar@hotmail.com");
+            preFill.put("contact", "9321897941");
+
+            options.put("prefill", preFill);
+
+            co.open(activity, options);
+        } catch (Exception e) {
+            Toast.makeText(activity, "Error in payment: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onPaymentSuccess(String s) {
+        // payment successfull pay_DGU19rDsInjcF2
+        Log.d(TAG, " payment successfull " + s.toString());
+        Toast.makeText(this, "Payment successfully done! " + s, Toast.LENGTH_SHORT).show();
+        getSubscription(s);
+
+
+    }
+
+    @Override
+    public void onPaymentError(int i, String s) {
+        Log.e(TAG, "error code " + String.valueOf(i) + " -- Payment failed " + s.toString());
+        try {
+            Toast.makeText(this, "Payment error please try again", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.e("OnPaymentError", "Exception in onPaymentError", e);
+        }
+
+    }
+
+    private void checkUserSubscription() {
+        final Progress progress = new Progress(this);
+        progress.show();
+        Call<CheckSubscribtion> call = RetrofitClient.getInstance().getApi().CheckSubscribtion(USER.getUMID());
+        call.enqueue(new Callback<CheckSubscribtion>() {
+            @Override
+            public void onResponse(Call<CheckSubscribtion> call, Response<CheckSubscribtion> response) {
+                progress.dismiss();
+                if (response.isSuccessful()) {
+                    if (response.body().isError()) {
+                        Constants.isSubscribed = false;
+                        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
+                        findViewById(R.id.floatingActionButton).setVisibility(View.GONE);
+                    } else {
+                        Constants.isSubscribed = true;
+                        findViewById(R.id.floatingActionButton).setVisibility(View.VISIBLE);
+
+                    }
+                    Intent intent = new Intent("subscribed");
+                    sendBroadcast(intent);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<CheckSubscribtion> call, Throwable t) {
+                progress.dismiss();
+            }
+        });
+    }
+
+    private void getSubscription(String Id) {
+        final Progress progress = new Progress(this);
+        progress.show();
+        Call<CheckSubscribtion> call = RetrofitClient.getInstance().getApi().GetSubscription(USER.getUMID(), Id);
+        call.enqueue(new Callback<CheckSubscribtion>() {
+            @Override
+            public void onResponse(Call<CheckSubscribtion> call, Response<CheckSubscribtion> response) {
+                progress.dismiss();
+                if (response.isSuccessful()) {
+                    if (!response.body().isError()) {
+                        new MaterialAlertDialogBuilder(MainActivity.this)
+                                .setTitle("Payment Successful")
+                                .setCancelable(false)
+                                .setMessage("Your Payment has been received Successfully\n Please Note The Transaction Id :" + Id + "\nPlease restart to continue.")
+                                .setPositiveButton("Restart", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(getApplicationContext(), LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                        finish();
+                                    }
+                                })
+                                .show();
+                    } else {
+                        Constants.Alert(MainActivity.this, "We are having some problem to process your payment, if any amount deducted please contact admin with transaction id.Please Note The Transaction Id :" + Id);
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<CheckSubscribtion> call, Throwable t) {
+                progress.dismiss();
+                Constants.Alert(MainActivity.this, "We are having some problem to process your payment, if any amount deducted please contact admin with transaction id.Please Note The Transaction Id :" + Id);
+            }
+        });
+    }
+
+    private void Logs() {
+        Call<CheckSubscribtion> call = RetrofitClient.getInstance().getApi().Logs(USER.getUMID());
+        call.enqueue(new Callback<CheckSubscribtion>() {
+            @Override
+            public void onResponse(Call<CheckSubscribtion> call, Response<CheckSubscribtion> response) {
+            }
+
+            @Override
+            public void onFailure(Call<CheckSubscribtion> call, Throwable t) {
+            }
+        });
+    }
+
+    public void redeemCouponDialoge() {
+
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_coupon);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        dialog.getWindow().setAttributes(lp);
+        dialog.show();
+        TextInputEditText CouponCode = dialog.findViewById(R.id.remark);
+        dialog.findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CouponCode.getText().toString().isEmpty()) {
+                    CouponCode.setError(CouponCode.getHint().toString());
+                    Toast.makeText(getApplicationContext(), CouponCode.getHint().toString(), Toast.LENGTH_SHORT).show();
+                } else {
+                    validateCouponCode(dialog, CouponCode.getText().toString().trim());
+                }
+            }
+        });
+        dialog.findViewById(R.id.closeDiloge).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+    }
+
+    private void validateCouponCode(Dialog dialog, String coupon) {
+        final Progress progress = new Progress(this);
+        progress.show();
+        Call<CheckSubscribtion> call = RetrofitClient.getInstance().getApi().GetSubscription_coupon_code(USER.getUMID(), coupon);
+        call.enqueue(new Callback<CheckSubscribtion>() {
+            @Override
+            public void onResponse(Call<CheckSubscribtion> call, Response<CheckSubscribtion> response) {
+                progress.dismiss();
+                if (response.isSuccessful()) {
+                    if (!response.body().isError()) {
+                        dialog.dismiss();
+                        new MaterialAlertDialogBuilder(MainActivity.this)
+                                .setTitle("Coupon Code Redeem Successfully")
+                                .setCancelable(false)
+                                .setMessage("Your Subscription has been activated.\nPlease restart to continue.")
+                                .setPositiveButton("Restart", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(getApplicationContext(), LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                        finish();
+                                    }
+                                })
+                                .show();
+                    } else {
+                        Constants.Alert(MainActivity.this, "Something went wrong!Please try after some time.");
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<CheckSubscribtion> call, Throwable t) {
+                progress.dismiss();
+                dialog.dismiss();
+                Constants.Alert(MainActivity.this, "Something went wrong!Please try after some time.");
+            }
+        });
+    }
+
 }

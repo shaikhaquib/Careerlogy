@@ -55,7 +55,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
         ProblemCategoryItem problemCategoryItem = problemCategories.get(position);
         ViewHolder viewHolder = (ViewHolder)holder;
         viewHolder.text.setText(Constants.capitalize(problemCategoryItem.getPCName()));
-        viewHolder.icon.setImageResource(img[position]);
+     //   viewHolder.icon.setImageResource(img[position]);
 
     }
 

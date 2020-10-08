@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -23,6 +25,7 @@ import com.DIS.careerlogy.Models.ProblemCategory;
 import com.DIS.careerlogy.Models.ProblemCategoryItem;
 import com.DIS.careerlogy.Network.RetrofitClient;
 import com.DIS.careerlogy.R;
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -89,9 +92,18 @@ public class EntrepreneurshipCategory extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.add, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
+        } else if (item.getItemId() == R.id.add) {
+            addCategaoryDialog();
         } else {
             Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
         }
@@ -205,6 +217,88 @@ public class EntrepreneurshipCategory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mBottomSheetDialog.dismiss();
+            }
+        });
+    }
+
+    private void addCategaoryDialog() {
+        if (mBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+            mBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        }
+
+        final View view;
+        mBottomSheetDialog = new BottomSheetDialog(this);
+        mBottomSheetDialog.setCancelable(false);
+        view = getLayoutInflater().inflate(R.layout.update_category, null);
+        mBottomSheetDialog.setContentView(view);
+
+        TextView txtTitle = view.findViewById(R.id.txtTitle);
+        TextInputEditText category = view.findViewById(R.id.category);
+        ElegantNumberButton numberButton = view.findViewById(R.id.serrialNo);
+        txtTitle.setText("Add New Category");
+        view.findViewById(R.id.vserial).setVisibility(View.VISIBLE);
+
+        numberButton.setRange(1, problemCategories.size() + 1);
+
+
+        view.findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (category.getText().toString().isEmpty()) {
+                    category.setError("Field required");
+                } else
+                    addCategory(category.getText().toString(), numberButton.getNumber());
+            }
+        });
+
+        mBottomSheetDialog.show();
+        mBottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                mBottomSheetDialog = null;
+            }
+        });
+
+        view.findViewById(R.id.btnCancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mBottomSheetDialog.dismiss();
+            }
+        });
+    }
+
+    public void addCategory(String name, String srno) {
+        final Progress progress = new Progress(this);
+        progress.show();
+        Call<CategoryOperationsEditResponse> call = RetrofitClient.getInstance().getApi().AddCategoryOperationsEdit("add", "student", name, LoginActivity.USER.getUMID(), "", srno);
+        call.enqueue(new Callback<CategoryOperationsEditResponse>() {
+            @Override
+            public void onResponse(Call<CategoryOperationsEditResponse> call, Response<CategoryOperationsEditResponse> response) {
+                progress.dismiss();
+                if (response.isSuccessful()) {
+                    if (response.body().isError()) {
+                        Constants.Alert(EntrepreneurshipCategory.this, response.body().getErrormsg());
+                    } else {
+                        new MaterialAlertDialogBuilder(EntrepreneurshipCategory.this)
+                                .setTitle("Alert")
+                                .setMessage(response.body().getErrormsg())
+                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        problemCategories.clear();
+                                        entrepreneursAdapter.notifyDataSetChanged();
+                                        getCategory();
+                                        mBottomSheetDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CategoryOperationsEditResponse> call, Throwable t) {
+                progress.dismiss();
             }
         });
     }

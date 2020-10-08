@@ -25,7 +25,7 @@
             android:layout_height="35dp"
             android:background="@drawable/circle_fill"
             android:padding="8dp"
-            android:src="@drawable/ic_presentation"
+            android:src="@drawable/ic_survey"
             android:tint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/text"

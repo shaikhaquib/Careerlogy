@@ -55,7 +55,7 @@ public class EntrepreneursAdapter extends RecyclerView.Adapter<EntrepreneursAdap
         EntrepreneursAdapter.ViewHolder viewHolder = (EntrepreneursAdapter.ViewHolder)holder;
         ProblemCategoryItem problemCategoryItem = problemCategories.get(position);
         viewHolder.text.setText(problemCategoryItem.getPCName());
-        viewHolder.icon.setImageResource(img[position]);
+        //viewHolder.icon.setImageResource(img[position]);
 
     }
 

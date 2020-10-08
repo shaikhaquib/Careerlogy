@@ -213,7 +213,7 @@ public class FeedBack extends AppCompatActivity {
                 Message message = new MimeMessage(session);
                 message.setFrom(new InternetAddress("no-reply@careerlogy.com"));
                 message.setRecipients(Message.RecipientType.TO,
-                        InternetAddress.parse("shaikhaquib119@gmail.com"));
+                        InternetAddress.parse("contact.careerlogy@gmail.com"));
                 message.setSubject(strings[0]);
                 message.setText(strings[1]);
 

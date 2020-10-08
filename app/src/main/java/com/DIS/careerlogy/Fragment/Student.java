@@ -1,8 +1,13 @@
 package com.DIS.careerlogy.Fragment;
 
 
+import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.DIS.careerlogy.Extra.Constants;
 import com.DIS.careerlogy.MainActivity;
 import com.DIS.careerlogy.Network.RetrofitClient;
 import com.DIS.careerlogy.Activity.AskQuestionStudent;
@@ -44,6 +50,8 @@ public class Student extends Fragment {
     private RecyclerView rvStudentCategory;
     RecyclerView.Adapter studentAdapter;
     private List<ProblemCategoryItem> problemCategories = new ArrayList<>();
+    private static final String TAG = "Student";
+    View view;
 
     public Student() {
         // Required empty public constructor
@@ -63,7 +71,8 @@ public class Student extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        this.view = view;
+        getActivity().registerReceiver(mNotificationReceiver, new IntentFilter("subscribed"));
         rvStudentCategory = view.findViewById(R.id.rvStudentCategory);
         view.findViewById(R.id.floatingActionButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,15 +89,32 @@ public class Student extends Fragment {
             public void onItemClick(View v, int pos) {
                 ProblemCategoryItem categoryItem = problemCategories.get(pos);
                 Intent intent = new Intent(getActivity(),StudentSubCategory.class);
-                intent.putExtra("problemCategoryId",categoryItem.getPCID());
-                intent.putExtra("title",categoryItem.getPCName());
+                intent.putExtra("problemCategoryId", categoryItem.getPCID());
+                intent.putExtra("title", categoryItem.getPCName());
                 startActivity(intent);
             }
         };
 
-        studentAdapter = new StudentAdapter(getActivity(),problemCategories,itemClickListener);
+        studentAdapter = new StudentAdapter(getActivity(), problemCategories, itemClickListener);
         rvStudentCategory.setAdapter(studentAdapter);
         getCategory();
+
+        view.findViewById(R.id.getSubscription).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.startPayment();
+            }
+        });
+
+        view.findViewById(R.id.haveCoupon).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.redeemCouponDialoge();
+            }
+        });
+
 
     }
 
@@ -111,6 +137,37 @@ public class Student extends Fragment {
                 progress.dismiss();
             }
         });
+    }
+
+    private BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d(TAG, "onReceive: ");
+            if (Constants.isSubscribed) {
+                view.findViewById(R.id.subscribed).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.floatingActionButton).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.notsubscribed).setVisibility(View.GONE);
+
+            } else {
+                view.findViewById(R.id.subscribed).setVisibility(View.GONE);
+                view.findViewById(R.id.floatingActionButton).setVisibility(View.GONE);
+                view.findViewById(R.id.notsubscribed).setVisibility(View.VISIBLE);
+            }
+
+            //  updateUi();
+        }
+    };
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().registerReceiver(mNotificationReceiver, new IntentFilter("subscribed"));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().unregisterReceiver(mNotificationReceiver);
     }
 
 }

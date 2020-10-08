@@ -4,14 +4,15 @@ package com.DIS.careerlogy.Network;
 import com.DIS.careerlogy.Models.AskQuestionByUserResponse;
 import com.DIS.careerlogy.Models.AskQuestionResponse;
 import com.DIS.careerlogy.Models.CategoryOperationsEditResponse;
+import com.DIS.careerlogy.Models.CheckSubscribtion;
 import com.DIS.careerlogy.Models.CitiesModel;
+import com.DIS.careerlogy.Models.CouponGenrateResponse;
 import com.DIS.careerlogy.Models.DownloadlinksModel;
 import com.DIS.careerlogy.Models.GraphsResponse;
 import com.DIS.careerlogy.Models.HistoryResponse;
 import com.DIS.careerlogy.Models.LoginResponse;
 import com.DIS.careerlogy.Models.ModelUserCategory;
 import com.DIS.careerlogy.Models.OTPResponse;
-import com.DIS.careerlogy.Models.ProbSubCatLstItem;
 import com.DIS.careerlogy.Models.ProblemCategory;
 import com.DIS.careerlogy.Models.ProblemSubCategoryResponse;
 import com.DIS.careerlogy.Models.QoutesResponse;
@@ -23,15 +24,12 @@ import com.DIS.careerlogy.Models.StateModel;
 import com.DIS.careerlogy.Models.TestimonialResponse;
 import com.DIS.careerlogy.Models.UploadTestimonialResponse;
 
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 
 public interface Api {
 
@@ -195,6 +193,29 @@ public interface Api {
     );
 
     @FormUrlEncoded
+    @POST("CategoryOperations")
+    Call<CategoryOperationsEditResponse> AddCategoryOperationsEdit(
+            @Field("option") String option,
+            @Field("cattype") String cattype,
+            @Field("catname") String catname,
+            @Field("userid") String userid,
+            @Field("fileurl") String fileurl,
+            @Field("serial") String serial
+    );
+
+    @FormUrlEncoded
+    @POST("SubCategoryOperations")
+    Call<CategoryOperationsEditResponse> AddSubCategoryOperations(
+            @Field("option") String option,
+            @Field("fileurl") String fileurl,
+            @Field("subcatname") String subcatname,
+            @Field("catid") String catid,
+            @Field("userid") String userid,
+            @Field("serial") String serial
+
+    );
+
+    @FormUrlEncoded
     @POST("SubCategoryOperations")
     Call<ResponseSubCategoryAdmin> SubCategoryOperationslist(
             @Field("option") String option
@@ -206,5 +227,36 @@ public interface Api {
             @Field("QID") String qid
     );
 
+    @FormUrlEncoded
+    @POST("CheckSubscription")
+    Call<CheckSubscribtion> CheckSubscribtion(
+            @Field("userid") String id
+    );
+
+    @FormUrlEncoded
+    @POST("Logs")
+    Call<CheckSubscribtion> Logs(
+            @Field("userid") String id
+    );
+
+    @FormUrlEncoded
+    @POST("GetSubscription")
+    Call<CheckSubscribtion> GetSubscription(
+            @Field("userid") String id,
+            @Field("transaction_id") String tid
+    );
+
+    @FormUrlEncoded
+    @POST("GetSubscription")
+    Call<CheckSubscribtion> GetSubscription_coupon_code(
+            @Field("userid") String id,
+            @Field("coupon_code") String tid
+    );
+
+    @FormUrlEncoded
+    @POST("GenerateCoupons")
+    Call<ResponseBody> GenerateCoupons(
+            @Field("coupon_count") String id
+    );
 
 }

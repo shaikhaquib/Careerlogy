@@ -1,8 +1,12 @@
 package com.DIS.careerlogy.Fragment;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.DIS.careerlogy.Activity.AskQuestionEntrepreneur;
+import com.DIS.careerlogy.Extra.Constants;
 import com.DIS.careerlogy.MainActivity;
 import com.DIS.careerlogy.Network.RetrofitClient;
 import com.DIS.careerlogy.Activity.EntrepreneurSubCategory;
@@ -39,13 +44,15 @@ import retrofit2.Response;
 public class Business extends Fragment {
 
 
-
     MainActivity activity;
     UpdateTitle updateTitle;
 
     private RecyclerView rvEntrepreneursCategory;
     RecyclerView.Adapter entrepreneursAdapter;
     private List<ProblemCategoryItem> problemCategories = new ArrayList<>();
+
+    private static final String TAG = "Business";
+    View view;
 
     public Business() {
         // Required empty public constructor
@@ -68,6 +75,8 @@ public class Business extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        this.view = view;
+        getActivity().registerReceiver(mNotificationReceiver, new IntentFilter("subscribed"));
         rvEntrepreneursCategory = view.findViewById(R.id.rvEntrepreneursCategory);
         rvEntrepreneursCategory.setHasFixedSize(true);
         rvEntrepreneursCategory.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -85,13 +94,27 @@ public class Business extends Fragment {
             public void onItemClick(View v, int pos) {
                 ProblemCategoryItem categoryItem = problemCategories.get(pos);
                 Intent intent = new Intent(getActivity(), EntrepreneurSubCategory.class);
-                intent.putExtra("problemCategoryId",categoryItem.getPCID());
-                intent.putExtra("title",categoryItem.getPCName());
+                intent.putExtra("problemCategoryId", categoryItem.getPCID());
+                intent.putExtra("title", categoryItem.getPCName());
                 startActivity(intent);
             }
         };
+        view.findViewById(R.id.getSubscription).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.startPayment();
+            }
+        });
+        view.findViewById(R.id.haveCoupon).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.redeemCouponDialoge();
+            }
+        });
 
-        entrepreneursAdapter = new EntrepreneursAdapter(getActivity(),problemCategories,itemClickListener);
+        entrepreneursAdapter = new EntrepreneursAdapter(getActivity(), problemCategories, itemClickListener);
         rvEntrepreneursCategory.setAdapter(entrepreneursAdapter);
         getCategory();
     }
@@ -115,6 +138,36 @@ public class Business extends Fragment {
                 progress.dismiss();
             }
         });
+    }
+
+    private BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d(TAG, "onReceive: ");
+            if (Constants.isSubscribed) {
+                view.findViewById(R.id.subscribed).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.floatingActionButton).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.notsubscribed).setVisibility(View.GONE);
+            } else {
+                view.findViewById(R.id.subscribed).setVisibility(View.GONE);
+                view.findViewById(R.id.floatingActionButton).setVisibility(View.GONE);
+                view.findViewById(R.id.notsubscribed).setVisibility(View.VISIBLE);
+            }
+
+            //  updateUi();
+        }
+    };
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().registerReceiver(mNotificationReceiver, new IntentFilter("subscribed"));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().unregisterReceiver(mNotificationReceiver);
     }
 
 

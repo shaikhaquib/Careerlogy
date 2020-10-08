@@ -6,7 +6,7 @@ android {
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.DIS.careerlogy"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -59,6 +59,11 @@ dependencies {
     implementation 'com.sun.mail:android-mail:1.6.2'
     implementation 'com.sun.mail:android-activation:1.6.2'
     implementation 'org.jsoup:jsoup:1.13.1'
+
+    implementation 'com.razorpay:checkout:1.5.16'
+
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+
 }
 repositories {
     mavenCentral()

@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -26,6 +28,7 @@ import com.DIS.careerlogy.Models.ProblemSubCategoryItem;
 import com.DIS.careerlogy.Models.ResponseSubCategoryAdmin;
 import com.DIS.careerlogy.Network.RetrofitClient;
 import com.DIS.careerlogy.R;
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -162,15 +165,74 @@ public class ProblemSubCategoryAdmin extends AppCompatActivity {
         });
     }
 
+    private void addSubCategaoryDialogCategory(String title) {
+        if (mBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+            mBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        }
+
+        final View view;
+        mBottomSheetDialog = new BottomSheetDialog(this);
+        mBottomSheetDialog.setCancelable(false);
+        view = getLayoutInflater().inflate(R.layout.update_subcategories, null);
+        mBottomSheetDialog.setContentView(view);
+
+        TextView txtTitle = view.findViewById(R.id.txtTitle);
+        TextInputEditText category = view.findViewById(R.id.category);
+        TextInputEditText url = view.findViewById(R.id.url);
+        txtTitle.setText(title);
+        view.findViewById(R.id.vserial).setVisibility(View.VISIBLE);
+        ElegantNumberButton numberButton = view.findViewById(R.id.serrialNo);
+        numberButton.setRange(1, problemSubCategories.size() + 1);
+
+
+        view.findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (category.getText().toString().isEmpty()) {
+                    category.setError("Field required");
+                } else if (url.getText().toString().isEmpty()) {
+                    url.setError("Field required");
+                } else {
+                    addCategory(problemSubCategories.get(0).getPSCProblemCategoryFK(), numberButton.getNumber(), category.getText().toString(), url.getText().toString());
+                }
+            }
+        });
+
+        mBottomSheetDialog.show();
+        mBottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                mBottomSheetDialog = null;
+            }
+        });
+
+        view.findViewById(R.id.btnCancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mBottomSheetDialog.dismiss();
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.add, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
+        } else if (item.getItemId() == R.id.add) {
+            addSubCategaoryDialogCategory("Add New Sub Category");
         } else {
             Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     public void getData() {
         final Progress progress = new Progress(this);
@@ -205,6 +267,42 @@ public class ProblemSubCategoryAdmin extends AppCompatActivity {
         final Progress progress = new Progress(this);
         progress.show();
         Call<CategoryOperationsEditResponse> call = RetrofitClient.getInstance().getApi().SubCategoryOperations("edit", url, name, catid, pscid, LoginActivity.USER.getUMID());
+        call.enqueue(new Callback<CategoryOperationsEditResponse>() {
+            @Override
+            public void onResponse(Call<CategoryOperationsEditResponse> call, Response<CategoryOperationsEditResponse> response) {
+                progress.dismiss();
+                if (response.isSuccessful()) {
+                    if (response.body().isError()) {
+                        Constants.Alert(ProblemSubCategoryAdmin.this, response.body().getErrormsg());
+                    } else {
+                        new MaterialAlertDialogBuilder(ProblemSubCategoryAdmin.this)
+                                .setTitle("Alert")
+                                .setMessage(response.body().getErrormsg())
+                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        problemSubCategories.clear();
+                                        learningSubAdapter.notifyDataSetChanged();
+                                        mBottomSheetDialog.dismiss();
+                                        getData();
+                                    }
+                                })
+                                .show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CategoryOperationsEditResponse> call, Throwable t) {
+                progress.dismiss();
+            }
+        });
+    }
+
+    public void addCategory(String catid, String serial, String name, String url) {
+        final Progress progress = new Progress(this);
+        progress.show();
+        Call<CategoryOperationsEditResponse> call = RetrofitClient.getInstance().getApi().AddSubCategoryOperations("add", url, name, catid, LoginActivity.USER.getUMID(), serial);
         call.enqueue(new Callback<CategoryOperationsEditResponse>() {
             @Override
             public void onResponse(Call<CategoryOperationsEditResponse> call, Response<CategoryOperationsEditResponse> response) {
