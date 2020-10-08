@@ -237,21 +237,14 @@ public class ProblemSubCategoryAdmin extends AppCompatActivity {
     public void getData() {
         final Progress progress = new Progress(this);
         progress.show();
-        Call<ResponseSubCategoryAdmin> call = RetrofitClient.getInstance().getApi().SubCategoryOperationslist("list");
+        Call<ResponseSubCategoryAdmin> call = RetrofitClient.getInstance().getApi().SubCategoryOperationslist("list", catId);
         call.enqueue(new Callback<ResponseSubCategoryAdmin>() {
             @Override
             public void onResponse(Call<ResponseSubCategoryAdmin> call, Response<ResponseSubCategoryAdmin> response) {
                 progress.dismiss();
                 if (response.isSuccessful()) {
-                    for (int i = 0; i < response.body().getProbSubCatLst().size(); i++) {
-                        ProbSubCatLstItem probSubCatLstItem = response.body().getProbSubCatLst().get(i);
-                        if (probSubCatLstItem.getPSCProblemCategoryFK().equals(catId)) {
-                            problemSubCategories.add(probSubCatLstItem);
-                            learningSubAdapter.notifyDataSetChanged();
-                        }
-
-
-                    }
+                    problemSubCategories.addAll(response.body().getProbSubCatLst());
+                    learningSubAdapter.notifyDataSetChanged();
                 }
 
             }

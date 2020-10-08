@@ -218,7 +218,8 @@ public interface Api {
     @FormUrlEncoded
     @POST("SubCategoryOperations")
     Call<ResponseSubCategoryAdmin> SubCategoryOperationslist(
-            @Field("option") String option
+            @Field("option") String option,
+            @Field("problemCategoryId") String id
     );
 
     @FormUrlEncoded
