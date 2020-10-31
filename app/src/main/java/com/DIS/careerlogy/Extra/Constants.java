@@ -12,6 +12,7 @@ public class Constants {
 
 
     public static boolean isSubscribed = false;
+    public static boolean isHasSubscription = false;
 
     public static final String DATABASE_NAME = "UserDB";
 

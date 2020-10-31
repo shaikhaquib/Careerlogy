@@ -81,7 +81,7 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Student"
+                    android:text="QUANTUM LEARNING"
                     android:textSize="18sp"
                     android:textColor="@android:color/black"
                     android:gravity="center"/>
@@ -121,7 +121,7 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Entrepreneur"
+                    android:text="E DYNAMICS"
                     android:textSize="18sp"
                     android:textColor="@android:color/black"
                     android:gravity="center"/>

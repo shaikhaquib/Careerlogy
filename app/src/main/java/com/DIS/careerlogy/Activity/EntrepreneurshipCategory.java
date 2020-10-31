@@ -270,7 +270,7 @@ public class EntrepreneurshipCategory extends AppCompatActivity {
     public void addCategory(String name, String srno) {
         final Progress progress = new Progress(this);
         progress.show();
-        Call<CategoryOperationsEditResponse> call = RetrofitClient.getInstance().getApi().AddCategoryOperationsEdit("add", "student", name, LoginActivity.USER.getUMID(), "", srno);
+        Call<CategoryOperationsEditResponse> call = RetrofitClient.getInstance().getApi().AddCategoryOperationsEdit("add", "entrepreneurship", name, LoginActivity.USER.getUMID(), "", srno);
         call.enqueue(new Callback<CategoryOperationsEditResponse>() {
             @Override
             public void onResponse(Call<CategoryOperationsEditResponse> call, Response<CategoryOperationsEditResponse> response) {

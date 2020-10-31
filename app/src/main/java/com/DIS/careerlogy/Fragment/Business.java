@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -152,6 +153,10 @@ public class Business extends Fragment {
                 view.findViewById(R.id.subscribed).setVisibility(View.GONE);
                 view.findViewById(R.id.floatingActionButton).setVisibility(View.GONE);
                 view.findViewById(R.id.notsubscribed).setVisibility(View.VISIBLE);
+                TextView textView = view.findViewById(R.id.textView);
+                if (Constants.isHasSubscription) {
+                    textView.setText("Your subscription has been expired, please get a subscription to continue");
+                }
             }
 
             //  updateUi();

@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         updateTitle = new UpdateTitle() {
             @Override
             public void updateData(int position) {
-                String[] arrTitle = {"Learner", "Entrepreneurship", "Graphs", "Articles", "Testimonial Videos"};
+                String[] arrTitle = {"QUANTUM LEARNING", "E DYNAMICS", "Graphs", "Articles", "Testimonial Videos"};
                 int[] arrIcon = {R.drawable.ic_student, R.drawable.ic_business, R.drawable.ic_graph, R.drawable.ic_articles, R.drawable.ic_video};
                 title.setText(arrTitle[position]);
                 icon.setImageResource(arrIcon[position]);
@@ -478,7 +478,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             // amount is in paise so please multiple it by 100
             //Payment failed Invalid amount (should be passed in integer paise. Minimum value is 100 paise, i.e. ₹ 1)
             double total;
-            total = 2 * 100;
+            total = 12000 * 100;
             options.put("amount", total);
 
             JSONObject preFill = new JSONObject();
@@ -528,6 +528,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         Constants.isSubscribed = false;
                         drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
                         findViewById(R.id.floatingActionButton).setVisibility(View.GONE);
+                        if (response.body().isPreviouslySubscribed()) {
+                            Constants.isHasSubscription = true;
+                        } else {
+                            Constants.isHasSubscription = false;
+                        }
+
+                        if (response.body().getDaysLeft() <= 30) {
+                            Toast.makeText(MainActivity.this, "After " + response.body().getDaysLeft() + " your subscription will be over, contact us now to use the app without any interruptions.", Toast.LENGTH_LONG).show();
+                        }
                     } else {
                         Constants.isSubscribed = true;
                         findViewById(R.id.floatingActionButton).setVisibility(View.VISIBLE);
